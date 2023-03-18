@@ -1,0 +1,6 @@
+<div *ngIf="user">
+  <strong>Welcome, {{user.username}}!</strong>
+</div>
+<div *ngIf="!user">
+  <button (click)="getData()">Get user data</button>
+</div>
