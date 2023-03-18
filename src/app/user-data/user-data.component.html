@@ -1,6 +1,6 @@
-<div *ngIf="user">
+<div *ngIf="user && !user.error; else elseBlock">
   <strong>Welcome, {{user.username}}!</strong>
 </div>
-<div *ngIf="!user">
+<ng-template #elseBlock>
   <button (click)="getData()">Get user data</button>
-</div>
+</ng-template>
