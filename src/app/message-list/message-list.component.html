@@ -1,16 +1,17 @@
-<form *ngIf="messages.length == 0; else elseBlock"
-  (submit)="$event.preventDefault(); getMessages(conversation.value)">
-  <input type="text" #conversation placeholder="conversation id">
-  <button type="submit">
-    Get messages
-  </button>
+<form *ngIf="messages.length == 0; else elseBlock">
+  <div *ngFor="let c of user?.conversations">
+    <a class="link" (click)="getMessages(c)">{{c}}</a>
+  </div>
+  <div *ngIf="!user?.conversations?.length">
+    <p>You don't have any conversations</p>
+  </div>
 </form>
 <ng-template #elseBlock>
   <strong>Messages from conversation {{conversation}}</strong>
   <ul *ngFor="let message of messages">
     <li [ngSwitch]="message.author">
       {{message.content}} -
-      <span *ngSwitchCase="userService.user?._id">
+      <span *ngSwitchCase="user?._id">
         Sent
       </span>
       <span *ngSwitchDefault>

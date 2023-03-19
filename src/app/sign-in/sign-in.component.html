@@ -3,3 +3,6 @@
   <input type="password" #password placeholder="password">
   <button type="submit">Sign In</button>
 </form>
+<p *ngIf="user">
+  <strong>You've signed in as {{user.username}}</strong>
+</p>

@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  background-color: #222;
+  color: #ddd;
+}
+
+a, .link {
+  color: lightblue;
+  text-decoration: none;
+  cursor: pointer;
+  &:visited {
+    color: darken($color: lightblue, $amount: 50);
+  }
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}

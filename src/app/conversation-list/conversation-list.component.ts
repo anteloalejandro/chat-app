@@ -18,6 +18,10 @@ export class ConversationListComponent {
     private userService: UserService
   ) {}
 
+  ngOnInit() {
+    this.getConversations()
+  }
+
   getConversations() {
     this.conversationService.getConversations()
       .subscribe(conversations => {

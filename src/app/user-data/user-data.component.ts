@@ -11,9 +11,9 @@ export class UserDataComponent {
   public user?: User
   constructor(private userService: UserService) { }
 
-  /* ngOnInit() {
+  ngOnInit() {
     this.getData()
-  } */
+  }
 
   getData() {
     this.userService.getUser()

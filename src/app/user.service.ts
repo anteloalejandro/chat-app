@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, flatMap, mergeMap } from 'rxjs/operators';
-import { AuthToken } from './auth-token';
 import { AuthService } from './auth.service';
 import { HttpOptions } from './http-options';
 import { User } from './user';

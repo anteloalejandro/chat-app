@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
+import { User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,12 +12,16 @@ import { UserService } from '../user.service';
 export class MessageListComponent {
   public messages: Message[] = []
   public conversation?: string
-  public user = this.userService.getUser()
+  public user?: User
 
   constructor(
     private messageService: MessageService,
-    public userService: UserService
+    private userService: UserService
   ) {}
+
+  ngOnInit() {
+    this.user = this.userService.user
+  }
 
   getMessages(conversationId: string) {
     this.conversation = conversationId

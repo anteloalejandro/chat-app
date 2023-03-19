@@ -1,5 +1,9 @@
 <div *ngIf="user && !user.error; else elseBlock">
   <strong>Welcome, {{user.username}}!</strong>
+  <ul>
+    <li><strong>id: </strong>{{user._id}}</li>
+    <li><strong>email: </strong>{{user.email}}</li>
+  </ul>
 </div>
 <ng-template #elseBlock>
   <button (click)="getData()">Get user data</button>

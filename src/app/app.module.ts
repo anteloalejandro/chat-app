@@ -7,6 +7,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { ConversationListComponent } from './conversation-list/conversation-list.component';
 import { MessageListComponent } from './message-list/message-list.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MessageListComponent } from './message-list/message-list.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
