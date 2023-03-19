@@ -16,7 +16,7 @@ export class UserDataComponent {
   } */
 
   getData() {
-    this.userService.getUserData()
+    this.userService.getUser()
       .subscribe((response) => {
         console.log(response)
         this.user = response

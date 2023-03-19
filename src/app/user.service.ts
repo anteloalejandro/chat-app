@@ -18,7 +18,7 @@ export class UserService {
     private authService: AuthService
   ) { }
 
-  getUserData(id?: string): Observable<User> {
+  getUser(id?: string): Observable<User> {
     let url = this.userUrl + '/'
     let params = 'token='+this.authService.token
     let store = true
@@ -38,6 +38,18 @@ export class UserService {
           this.user = _
         }),
         catchError(this.handleError<User>()))
+  }
+
+  whoAmI(user1: string, user2: string): string {
+    const me = this.user
+    const alsoMe = me?._id == user1 ? user1 : user2
+    return alsoMe
+  }
+
+  notMe(user1: string, user2: string): string {
+    const me = this.user
+    const notMe = me?._id != user1 ? user1 : user2
+    return notMe
   }
 
   handleError<T>(operation = 'operation', result?: T) {

@@ -12,7 +12,9 @@ export class AuthService {
   private authUrl = 'https://localhost:8443/auth'
   private httpOptions = new HttpOptions()
   public token: string = ''
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   signIn(email: string, password: string): Observable<AuthToken> {
     const url = this.authUrl+'/sign-in'
