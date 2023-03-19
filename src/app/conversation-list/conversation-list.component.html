@@ -1,0 +1,8 @@
+<button *ngIf="conversations.length == 0; else elseBlock"
+  (click)="getConversations()">Get conversations</button>
+<ng-template #elseBlock>
+  <strong>Contacts</strong>
+  <ul *ngFor="let contact of contacts">
+    <li>{{contact.username}}</li>
+  </ul>
+</ng-template>

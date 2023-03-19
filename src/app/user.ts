@@ -3,7 +3,7 @@ export interface User {
   email: string,
   username: string,
   password: string | null | undefined,
-  __v: 2,
+  __v: number,
   conversations: string[],
   error?: string
 }

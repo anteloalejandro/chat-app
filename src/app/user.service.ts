@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, flatMap, mergeMap } from 'rxjs/operators';
 import { AuthToken } from './auth-token';
 import { AuthService } from './auth.service';
 import { HttpOptions } from './http-options';
@@ -12,17 +12,32 @@ import { User } from './user';
 })
 export class UserService {
   private userUrl = 'https://localhost:8443/api/users'
+  public user?: User
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  getUserData(): Observable<User> {
-    const httpOptions = new HttpOptions('token='+this.authService.token)
+  getUserData(id?: string): Observable<User> {
+    let url = this.userUrl + '/'
+    let params = 'token='+this.authService.token
+    let store = true
+    if (id) {
+      url += id
+      params = ''
+      store = false
+    }
+
+    const httpOptions = new HttpOptions(params)
     console.log(httpOptions)
-    const url = this.userUrl + '/'
     return this.http.get<User>(url, httpOptions)
-      .pipe(catchError(this.handleError<User>()))
+      .pipe(
+        tap(_ => {
+          if (!store)
+            return
+          this.user = _
+        }),
+        catchError(this.handleError<User>()))
   }
 
   handleError<T>(operation = 'operation', result?: T) {
