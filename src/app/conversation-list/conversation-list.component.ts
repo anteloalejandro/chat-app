@@ -26,12 +26,8 @@ export class ConversationListComponent {
     this.conversationService.getConversations()
       .subscribe(conversations => {
         this.conversations = conversations
-        conversations.forEach(c => {
-          const id = this.userService.notMe(c.users.user1, c.users.user2)
-          this.userService.getUser(id).subscribe(user => {
-            this.contacts.push(user)
-          })
-        })
+        this.userService.getContacts()
+          .subscribe(contacts => this.contacts = contacts)
       })
   }
 }

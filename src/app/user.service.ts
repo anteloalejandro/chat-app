@@ -28,7 +28,6 @@ export class UserService {
     }
 
     const httpOptions = new HttpOptions(params)
-    console.log(httpOptions)
     return this.http.get<User>(url, httpOptions)
       .pipe(
         tap(_ => {
@@ -37,6 +36,12 @@ export class UserService {
           this.user = _
         }),
         catchError(this.handleError<User>()))
+  }
+
+  getContacts(): Observable<User[]> {
+    const url = this.userUrl + '/contacts'
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+    return this.http.get<User[]>(url, httpOptions)
   }
 
   whoAmI(user1: string, user2: string): string {
