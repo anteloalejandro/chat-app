@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -12,7 +13,8 @@ export class SignInComponent {
   user?: User
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private socketService: SocketIoService
   ) {}
   signIn(email: string, password: string) {
     this.authService.signIn(email, password)
@@ -20,7 +22,10 @@ export class SignInComponent {
         console.log(authToken.token)
         console.log(this.authService.token)
         this.userService.getUser()
-          .subscribe(user => this.user = user)
+          .subscribe(user => {
+            this.user = user
+            this.socketService.joinRoom(user._id)
+          })
       })
   }
 }
