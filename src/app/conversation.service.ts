@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment as env } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Conversation } from './conversation';
 import { HttpOptions } from './http-options';
@@ -9,7 +10,7 @@ import { HttpOptions } from './http-options';
   providedIn: 'root'
 })
 export class ConversationService {
-  private conversationUrl = 'https://localhost:8443/api/conversations'
+  private conversationUrl = env.baseUrl+'/api/conversations'
   constructor(
     private http: HttpClient,
     private authService: AuthService

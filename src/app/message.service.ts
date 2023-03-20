@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment as env } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { HttpOptions } from './http-options';
 import { Message } from './message';
@@ -9,7 +10,7 @@ import { Message } from './message';
   providedIn: 'root'
 })
 export class MessageService {
-  private messsageUrl = 'https://localhost:8443/api/messages'
+  private messsageUrl = env.baseUrl+'/api/messages'
 
   constructor(
     private http: HttpClient,

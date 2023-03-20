@@ -1,3 +1,4 @@
+import { environment as env } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -9,7 +10,7 @@ import { HttpOptions } from './http-options';
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl = 'https://localhost:8443/auth'
+  private authUrl = env.baseUrl+'/auth'
   private httpOptions = new HttpOptions()
   public token: string = ''
   constructor(
