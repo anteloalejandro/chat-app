@@ -28,6 +28,10 @@ export class AuthService {
       )
   }
 
+  canActivate(): boolean {
+    return this.token !== ''
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
