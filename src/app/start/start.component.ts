@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./start.component.scss']
 })
 export class StartComponent {
+  public conversation?: string
 
+  setConversation(id: string) {
+    this.conversation = id
+    console.log('conversation set to: '+this.conversation)
+  }
 }

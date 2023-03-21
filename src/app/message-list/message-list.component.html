@@ -1,15 +1,8 @@
-<form *ngIf="messages.length == 0; else elseBlock">
-  <div *ngFor="let c of user?.conversations">
-    <a class="link" (click)="getMessages(c)">{{c}}</a>
-  </div>
-  <div *ngIf="!user?.conversations?.length">
-    <p>You don't have any conversations</p>
-  </div>
-</form>
-<ng-template #elseBlock>
+<div *ngIf="conversation; else elseBlock">
   <strong>Messages from conversation {{conversation}}</strong>
   <ul *ngFor="let message of messages">
-    <li [ngSwitch]="message.author">
+    <li [ngSwitch]="message.author"
+      [ngClass]="message.author === user?._id ? 'sent' : 'recieved'">
       {{message.content}} -
       <span *ngSwitchCase="user?._id">
         Sent
@@ -19,4 +12,8 @@
       </span>
     </li>
   </ul>
+</div>
+
+<ng-template #elseBlock>
+  <p><strong>Select a conversation</strong></p>
 </ng-template>

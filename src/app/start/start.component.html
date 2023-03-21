@@ -1,8 +1,8 @@
 <div class="container">
   <aside>
-    <app-conversation-list></app-conversation-list>
+    <app-conversation-list (onSelectConversation)="setConversation($event)"></app-conversation-list>
   </aside>
   <div>
-    <app-message-list></app-message-list>
+    <app-message-list [conversation]="conversation"></app-message-list>
   </div>
 </div>

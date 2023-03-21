@@ -3,7 +3,9 @@
 <ng-template #elseBlock>
   <strong>Conversations</strong>
   <ul *ngFor="let conversation of conversations">
-    <li>{{conversation._id}}</li>
+    <li>
+      <a class="link" (click)="selectConversation(conversation._id)">{{conversation._id}}</a>
+    </li>
   </ul>
   <strong>Contacts</strong>
   <ul *ngFor="let contact of contacts">

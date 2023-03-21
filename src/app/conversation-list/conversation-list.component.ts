@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Conversation } from '../conversation';
 import { ConversationService } from '../conversation.service';
 import { User } from '../user';
@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class ConversationListComponent {
   public conversations: Conversation[] = []
   public contacts: User[] = []
+  @Output() onSelectConversation = new EventEmitter<string>();
 
   constructor(
     private conversationService: ConversationService,
@@ -31,5 +32,10 @@ export class ConversationListComponent {
             this.contacts = contacts
           })
       })
+  }
+
+  selectConversation(id: string) {
+    console.log('sending conversation')
+    this.onSelectConversation.emit(id)
   }
 }

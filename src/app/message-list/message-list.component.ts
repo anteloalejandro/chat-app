@@ -23,6 +23,11 @@ export class MessageListComponent {
     this.user = this.userService.user
   }
 
+  ngOnChanges() {
+    if (this.conversation)
+      this.getMessages(this.conversation)
+  }
+
   getMessages(conversationId: string) {
     this.conversation = conversationId
     this.messageService.getMessagesFromConversation(conversationId)
