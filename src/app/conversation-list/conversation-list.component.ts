@@ -27,7 +27,9 @@ export class ConversationListComponent {
       .subscribe(conversations => {
         this.conversations = conversations
         this.userService.getContacts()
-          .subscribe(contacts => this.contacts = contacts)
+          .subscribe(contacts => {
+            this.contacts = contacts
+          })
       })
   }
 }

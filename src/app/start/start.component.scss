@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 800px;
+  & > * {
+    padding: 1rem;
+  }
+
+  app-message-list {
+    overflow-y: scroll;
+  }
+}

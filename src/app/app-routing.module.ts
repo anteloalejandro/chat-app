@@ -6,6 +6,7 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { ConversationListComponent } from './conversation-list/conversation-list.component';
 import { MessageListComponent } from './message-list/message-list.component';
 import { AuthService } from './auth.service';
+import { StartComponent } from './start/start.component';
 
 const canActivateAuth: CanActivateFn = () => {
   if (inject(AuthService).canActivate())
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'user-data', component: UserDataComponent},
   {path: 'conversation-list', component: ConversationListComponent, canActivate: [canActivateAuth]},
   {path: 'message-list', component: MessageListComponent, canActivate: [canActivateAuth]},
-  {path: '', redirectTo: 'sign-in', pathMatch: 'full'}
+  {path: '', component: StartComponent, canActivate: [canActivateAuth]}
 ]
 
 @NgModule({

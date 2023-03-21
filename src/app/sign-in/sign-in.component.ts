@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
@@ -14,7 +15,8 @@ export class SignInComponent {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private socketService: SocketIoService
+    private socketService: SocketIoService,
+    private router: Router
   ) {}
   signIn(email: string, password: string) {
     this.authService.signIn(email, password)
@@ -25,6 +27,7 @@ export class SignInComponent {
           .subscribe(user => {
             this.user = user
             this.socketService.joinRoom(user._id)
+            this.router.navigate(['/'])
           })
       })
   }

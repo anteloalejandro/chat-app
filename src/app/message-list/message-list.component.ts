@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { User } from '../user';
@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
 })
 export class MessageListComponent {
   public messages: Message[] = []
-  public conversation?: string
+  @Input() conversation?: string
   public user?: User
 
   constructor(
