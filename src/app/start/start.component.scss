@@ -1,12 +1,16 @@
 .container {
   display: grid;
-  grid-template-columns: auto 1fr;
-  height: 800px;
-  & > * {
-    padding: 1rem;
+  grid-template-columns: 20ch 1fr;
+
+  app-conversation-list {
+    background-color: #282828;
+    padding: .5rem;
+  }
+  app-message-list .messages {
+    padding: .5rem;
   }
 
-  app-message-list {
-    overflow-y: scroll;
+  aside + div {
+    background-image: url(/assets/inspiration-geometry.png);
   }
 }

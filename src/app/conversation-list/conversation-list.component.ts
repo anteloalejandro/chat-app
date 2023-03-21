@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./conversation-list.component.scss']
 })
 export class ConversationListComponent {
+  public selected?: string
   public conversations: Conversation[] = []
   public contacts: User[] = []
   public conversationContactMap = new Map<string, string>()
@@ -48,6 +49,7 @@ export class ConversationListComponent {
   }
 
   selectConversation(id: string) {
+    this.selected = id
     console.log('sending conversation')
     this.onSelectConversation.emit(id)
   }

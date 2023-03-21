@@ -10,6 +10,7 @@ import { MessageListComponent } from './message-list/message-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './start/start.component';
 import { HeaderComponent } from './header/header.component';
+import { SendBarComponent } from './send-bar/send-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './header/header.component';
     ConversationListComponent,
     MessageListComponent,
     StartComponent,
-    HeaderComponent
+    HeaderComponent,
+    SendBarComponent
   ],
   imports: [
     BrowserModule,

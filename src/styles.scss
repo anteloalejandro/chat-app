@@ -1,10 +1,14 @@
-* {box-sizing: border-box;}
+* {box-sizing: border-box}
 
 :root {
   font-family: system-ui, sans-serif;
   font-size: 18px;
   background-color: #222;
   color: #ddd;
+  --header-height: 3rem;
+  --body-height: 100svh;
+  --send-bar-height: 3rem;
+  --content-height: calc(var(--body-height) - var(--header-height));
 }
 
 a, .link {
@@ -19,7 +23,44 @@ a, .link {
   }
 }
 
-app-root, body {
-  height: 100vh;
-  margin: 0; padding: 0;
+body {
+  height: var(--body-height);
+  margin: auto;
+  app-root {
+    display: flex;
+    flex-flow: column;
+    height: inherit;
+    header {
+      height: var(--header-height);
+      background: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-inline: 1rem;
+    }
+
+    .container {
+      height: var(--content-height);
+      & > * {
+        height: inherit;
+        app-conversation-list {
+          display: block;
+          height: 100%;
+          overflow-y: auto;
+        }
+        app-message-list {
+          display: block;
+          height: 100%;
+          .messages {
+            margin: 0;
+            height: calc(var(--content-height) - var(--send-bar-height));
+            overflow-y: auto;
+          }
+        }
+        app-send-bar form {
+          height: var(--send-bar-height);
+        }
+      }
+    }
+  }
 }

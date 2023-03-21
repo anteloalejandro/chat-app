@@ -1,19 +1,13 @@
 <div *ngIf="conversation; else elseBlock">
-  <strong>Messages from conversation {{conversation}}</strong>
-  <ul *ngFor="let message of messages">
-    <li [ngSwitch]="message.author"
+  <ul class="messages">
+    <li *ngFor="let message of messages" class="message"
       [ngClass]="message.author === user?._id ? 'sent' : 'recieved'">
-      {{message.content}} -
-      <span *ngSwitchCase="user?._id">
-        Sent
-      </span>
-      <span *ngSwitchDefault>
-        Recieved
-      </span>
+      {{message.content}}
     </li>
   </ul>
+  <app-send-bar></app-send-bar>
 </div>
 
 <ng-template #elseBlock>
-  <p><strong>Select a conversation</strong></p>
+  <h4 style="color: coral; padding: .5rem; text-align: center;">Select a conversation</h4>
 </ng-template>
