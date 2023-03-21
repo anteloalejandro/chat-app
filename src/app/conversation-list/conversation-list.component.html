@@ -4,12 +4,9 @@
   <strong>Conversations</strong>
   <ul *ngFor="let conversation of conversations">
     <li>
-      <a class="link" (click)="selectConversation(conversation._id)">{{conversation._id}}</a>
+      <a class="link" (click)="selectConversation(conversation._id)">
+        {{conversationContactMap.get(conversation._id)}}
+      </a>
     </li>
   </ul>
-  <strong>Contacts</strong>
-  <ul *ngFor="let contact of contacts">
-    <li>{{contact.username}}</li>
-  </ul>
-  <p>n of contacts: {{contacts.length}}</p>
 </ng-template>

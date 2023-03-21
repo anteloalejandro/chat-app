@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class ConversationListComponent {
   public conversations: Conversation[] = []
   public contacts: User[] = []
+  public conversationContactMap = new Map<string, string>()
   @Output() onSelectConversation = new EventEmitter<string>();
 
   constructor(
@@ -29,9 +30,21 @@ export class ConversationListComponent {
         this.conversations = conversations
         this.userService.getContacts()
           .subscribe(contacts => {
+            this.updateMap(contacts)
             this.contacts = contacts
           })
       })
+  }
+
+  updateMap(contacts: User[]) {
+    for (const conv of this.conversations) {
+      for (const contact of contacts) {
+        if (contact.conversations.includes(conv._id)) {
+          this.conversationContactMap.set(conv._id, contact.username)
+          break
+        }
+      }
+    }
   }
 
   selectConversation(id: string) {
