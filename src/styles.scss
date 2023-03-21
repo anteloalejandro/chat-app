@@ -1,3 +1,5 @@
+* {box-sizing: border-box;}
+
 :root {
   font-family: system-ui, sans-serif;
   font-size: 18px;
@@ -15,4 +17,9 @@ a, .link {
   &:hover, &:active {
     text-decoration: underline;
   }
+}
+
+app-root, body {
+  height: 100vh;
+  margin: 0; padding: 0;
 }

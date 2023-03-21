@@ -9,6 +9,7 @@ import { ConversationListComponent } from './conversation-list/conversation-list
 import { MessageListComponent } from './message-list/message-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './start/start.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StartComponent } from './start/start.component';
     UserDataComponent,
     ConversationListComponent,
     MessageListComponent,
-    StartComponent
+    StartComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
