@@ -39,7 +39,7 @@ body {
       padding-inline: 1rem;
     }
 
-    .container {
+    .container, .container-mobile {
       height: var(--content-height);
       & > * {
         height: inherit;
