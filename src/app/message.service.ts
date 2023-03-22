@@ -23,4 +23,17 @@ export class MessageService {
 
     return this.http.get<Message[]>(url, httpOptions)
   }
+
+
+  save(message: messagePost): Observable<Message> {
+    const url = this.messsageUrl
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.post<Message>(url, message, httpOptions)
+  }
+}
+
+type messagePost = {
+  content: string,
+  conversation: string
 }

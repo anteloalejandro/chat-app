@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { io } from 'socket.io-client'
 import { environment as env } from 'src/environments/environment';
 import { Message } from './message';
@@ -14,13 +15,17 @@ export class SocketIoService {
 
   joinRoom(room: string) {
     this.socket.emit('join', room)
-
-    this.socket.on('refresh-messages', msg => {
-      console.log(msg)
-    })
   }
 
-  sendMessage(message: string) {
+  send(message: Message) {
     this.socket.emit('message', message)
+  }
+
+  onRefresh(): Observable<Message> {
+    return new Observable<Message>(observer => {
+      this.socket.on('refresh-messages', (data: Message) => {
+        return observer.next(data)
+      })
+    })
   }
 }

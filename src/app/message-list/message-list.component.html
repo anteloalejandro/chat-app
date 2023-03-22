@@ -5,7 +5,8 @@
       {{message.content}}
     </li>
   </ul>
-  <app-send-bar></app-send-bar>
+  <app-send-bar [conversation]="conversation"
+    (onMessageRecieved)="addMessage($event)"/>
 </div>
 
 <ng-template #elseBlock>

@@ -37,6 +37,13 @@ export class MessageListComponent {
       })
   }
 
+  addMessage(message: Message) {
+    if (message.conversation != this.conversation)
+      return
+    this.messages.push(message)
+    this.scrollToBottom(true)
+  }
+
   scrollToBottom(smooth = false) {
     if (this.messages.length == 0)
       return

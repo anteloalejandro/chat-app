@@ -1,6 +1,6 @@
-<form>
+<form (submit)="$event.preventDefault(); sendMessage(text.value); text.value = ''">
   <div>
-    <input placeholder="your message goes here">
-    <button>&gt;</button>
+    <input placeholder="your message goes here" #text>
+    <button type="submit">&gt;</button>
   </div>
 </form>
