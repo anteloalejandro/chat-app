@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { User } from '../user';
@@ -37,15 +37,18 @@ export class MessageListComponent {
       })
   }
 
-  scrollToBottom() {
+  scrollToBottom(smooth = false) {
     if (this.messages.length == 0)
       return
+
+    const options: ScrollIntoViewOptions =
+      {behavior: smooth ? 'smooth' : 'auto'}
 
     var tmp = setInterval(() => {
       const lastMsg = document.querySelector('.message:last-of-type')
       if (lastMsg) {
         clearInterval(tmp)
-        lastMsg.scrollIntoView()
+        lastMsg.scrollIntoView(options)
       }
     })
   }
