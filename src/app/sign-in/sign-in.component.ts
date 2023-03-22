@@ -19,6 +19,9 @@ export class SignInComponent {
     private router: Router
   ) {}
   signIn(email: string, password: string) {
+    if (!(email || password))
+      return
+
     this.authService.signIn(email, password)
       .subscribe(authToken => {
         console.log(authToken.token)

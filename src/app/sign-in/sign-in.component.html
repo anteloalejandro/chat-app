@@ -1,7 +1,7 @@
 <div class="container">
   <form (submit)="$event.preventDefault(); signIn(email.value, password.value)">
-    <input type="email" #email placeholder="email">
-    <input type="password" #password placeholder="password">
+    <input type="email" #email placeholder="email" required>
+    <input type="password" #password placeholder="password" required>
     <button type="submit">Sign In</button>
   </form>
   <p *ngIf="user">

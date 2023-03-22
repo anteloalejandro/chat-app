@@ -24,7 +24,8 @@ export class AuthService {
       password: password
     }, this.httpOptions)
       .pipe(
-        tap(_ => this.token = _.token),
+        tap(_ =>
+          this.token =  _.token ? _.token : ''),
         catchError(this.handleError<AuthToken>())
       )
   }
