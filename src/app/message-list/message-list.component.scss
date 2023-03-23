@@ -1,5 +1,8 @@
-.messages {
+:host {
   background-image: url(/assets/inspiration-geometry.png);
+}
+
+.messages {
   display: flex;
   flex-flow: column;
   padding: 1rem;

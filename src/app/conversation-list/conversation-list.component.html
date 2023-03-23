@@ -1,5 +1,8 @@
+<h4>Conversations</h4>
+<div *ngIf="!conversations.length && checkedConversations">
+  <p>You have no conversations</p>
+</div>
 <div *ngIf="conversations.length">
-  <h4>Conversations</h4>
   <ul>
     <li *ngFor="let conversation of conversations; let i = index">
       <a class="link" (click)="selectConversation(conversation._id)"

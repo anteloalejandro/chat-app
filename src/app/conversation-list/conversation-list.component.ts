@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class ConversationListComponent {
   public selected?: string
   public conversations: Conversation[] = []
+  public checkedConversations = false
   public contacts: User[] = []
   public conversationContactMap = new Map<string, string>()
   @Output() onSelectConversation = new EventEmitter<string>();
@@ -33,6 +34,7 @@ export class ConversationListComponent {
           .subscribe(contacts => {
             this.updateMap(contacts)
             this.contacts = contacts
+            this.checkedConversations = true
           })
       })
   }
