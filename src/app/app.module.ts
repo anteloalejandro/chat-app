@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './start/start.component';
 import { HeaderComponent } from './header/header.component';
 import { SendBarComponent } from './send-bar/send-bar.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SendBarComponent } from './send-bar/send-bar.component';
     MessageListComponent,
     StartComponent,
     HeaderComponent,
-    SendBarComponent
+    SendBarComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

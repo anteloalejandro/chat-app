@@ -3,8 +3,6 @@
     <input type="email" #email placeholder="email" required>
     <input type="password" #password placeholder="password" required>
     <button type="submit">Sign In</button>
+    <app-error [errorMsg]="error"></app-error>
   </form>
-  <p *ngIf="user">
-  <strong>You've signed in as {{user.username}}</strong>
-  </p>
 </div>

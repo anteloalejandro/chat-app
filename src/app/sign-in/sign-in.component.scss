@@ -10,6 +10,7 @@
     border-radius: .5rem;
     border: .2rem solid #666;
     input, button {
+      margin-block: .5rem;
       display: block;
       border-radius: .2rem;
       border: .2rem solid black;
@@ -23,9 +24,6 @@
         border-color: #ccc;
         outline-color: #ccc;
       }
-    }
-    input {
-      margin-bottom: 1rem;
     }
   }
 }

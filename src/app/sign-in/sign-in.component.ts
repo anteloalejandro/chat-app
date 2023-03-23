@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  error?: string
   user?: User
   constructor(
     private authService: AuthService,
@@ -24,6 +25,11 @@ export class SignInComponent {
 
     this.authService.signIn(email, password)
       .subscribe(authToken => {
+        if (authToken.error) {
+          this.error = authToken.error
+          return
+        }
+
         console.log(authToken.token)
         console.log(this.authService.token)
         this.userService.getUser()
