@@ -10,7 +10,25 @@
     padding: .5rem;
   }
 
-  aside + div {
-    background-image: url(/assets/inspiration-geometry.png);
+}
+
+#back-btn {
+  position: fixed;
+  cursor: pointer;
+  top: calc(.5rem + var(--header-height));
+  left: .5rem;
+  padding: .5rem .6rem;
+  $bg: rgba($color: black, $alpha: .8);
+
+  background-color: $bg;
+  border: none;
+  border-radius: .8rem;
+  box-shadow: 0 0 5px $bg;
+  color: white;
+
+  &:hover {
+    background-color: deepskyblue;
+    box-shadow: 0 0 5px deepskyblue;
+    color: black;
   }
 }

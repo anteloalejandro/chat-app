@@ -7,11 +7,13 @@
   </div>
 </div>
 <div class="container-mobile" *ngIf="mobileLayout" [ngSwitch]="mobileView">
-  <div>
-    <app-message-list *ngSwitchCase="'messages'"
+  <div *ngSwitchCase="'messages'">
+    <button (click)="mobileView = 'conversations'" id="back-btn">&ltri;</button>
+    <app-message-list
       [conversation]="conversation"/>
-
-    <app-conversation-list *ngSwitchCase="'conversations'"
+  </div>
+  <div *ngSwitchCase="'conversations'">
+    <app-conversation-list
       (onSelectConversation)="setConversation($event)"/>
   </div>
 </div>
