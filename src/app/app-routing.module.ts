@@ -18,9 +18,7 @@ const canActivateAuth: CanActivateFn = () => {
 
 const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
-  {path: 'user-data', component: UserDataComponent},
-  {path: 'conversation-list', component: ConversationListComponent, canActivate: [canActivateAuth]},
-  {path: 'message-list', component: MessageListComponent, canActivate: [canActivateAuth]},
+  {path: 'user-data/:id', component: UserDataComponent, canActivate: [canActivateAuth]},
   {path: '', component: StartComponent, canActivate: [canActivateAuth]}
 ]
 

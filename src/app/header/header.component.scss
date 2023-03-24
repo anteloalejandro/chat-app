@@ -4,4 +4,11 @@ header {
   align-items: center;
   justify-content: space-between;
   padding-inline: 1rem;
+
+  a {
+    background-color: #363636;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    color: white
+  }
 }

@@ -1,0 +1,25 @@
+:host {
+  max-width: 500px;
+  margin: auto;
+}
+
+#pfp {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  overflow: hidden;
+  background-color: black;
+  border: .2rem solid rgba($color: white, $alpha: .2);
+  img {
+    width: 100px;
+  }
+}
+
+button {
+  background-color: #363636;
+  border-radius: 10px;
+  padding: .5rem 1rem;
+  color: white;
+  border: none
+}

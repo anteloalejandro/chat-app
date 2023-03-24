@@ -1,6 +1,10 @@
 <header>
   <div>
-    <span>{{userService.contact?.username}}</span>
+    <span *ngIf="userService.contact">
+      <a routerLink="/user-data/{{userService.contact._id}}">
+        {{userService.contact.username}}
+      </a>
+    </span>
   </div>
   <a routerLink="/sign-in">Sign in</a>
 </header>

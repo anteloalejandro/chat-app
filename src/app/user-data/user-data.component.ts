@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -9,17 +11,30 @@ import { UserService } from '../user.service';
 })
 export class UserDataComponent {
   public user?: User
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
-    this.getData()
+    const id = this.route.snapshot.paramMap.get('id')
+    this.getData(id ? id : undefined)
   }
 
-  getData() {
-    this.userService.getUser()
-      .subscribe((response) => {
-        console.log(response)
-        this.user = response
-      })
+  getData(id?: string) {
+    if (!id) {
+      this.user = this.userService.user
+    } else if (id == this.userService.contact?._id) {
+      this.user = this.userService.contact
+    } else {
+      this.userService.getUser(id)
+        .subscribe(user => this.user = user)
+    }
+  }
+
+  goBack() {
+    this.location.back()
+    this.userService.contact = undefined
   }
 }
