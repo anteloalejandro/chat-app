@@ -8,7 +8,7 @@
 </div>
 <div class="container-mobile" *ngIf="mobileLayout" [ngSwitch]="mobileView">
   <div *ngSwitchCase="'messages'">
-    <button (click)="mobileView = 'conversations'" id="back-btn">&ltri;</button>
+    <button (click)="switchToConversations()" id="back-btn">&ltri;</button>
     <app-message-list
       [conversation]="conversation"/>
   </div>

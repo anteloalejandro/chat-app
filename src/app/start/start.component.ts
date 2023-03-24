@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-start',
@@ -15,7 +16,8 @@ export class StartComponent {
   public view = '/conversation-list'
   constructor(
     private responsive: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
@@ -33,5 +35,10 @@ export class StartComponent {
       this.mobileView = 'messages'
 
     console.log(this.mobileView)
+  }
+
+  switchToConversations() {
+    this.mobileView = 'conversations'
+    this.userService.contact = undefined
   }
 }

@@ -52,6 +52,10 @@ export class ConversationListComponent {
 
   selectConversation(id: string) {
     this.selected = id
+    const contact = this.contacts.filter(c =>
+        c.conversations.includes(id))[0]
+    console.log(contact)
+    this.userService.contact = contact
     console.log('sending conversation')
     this.onSelectConversation.emit(id)
   }

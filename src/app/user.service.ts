@@ -13,6 +13,7 @@ import { User } from './user';
 export class UserService {
   private userUrl = env.baseUrl+'/api/users'
   public user?: User
+  public contact?: User
   constructor(
     private http: HttpClient,
     private authService: AuthService
