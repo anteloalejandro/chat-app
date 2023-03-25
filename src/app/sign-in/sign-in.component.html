@@ -3,6 +3,9 @@
     <input type="email" #email placeholder="email" required>
     <input type="password" #password placeholder="password" required>
     <button type="submit">Sign In</button>
+    <p>
+      <small>You don't have an account? <a routerLink="/sign-up">Sign up!</a></small>
+    </p>
     <app-error [errorMsg]="error"></app-error>
   </form>
 </div>

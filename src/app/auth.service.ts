@@ -52,4 +52,4 @@ export class AuthService {
   }
 }
 
-type signUpResponse = {id: string, msg: string}
+type signUpResponse = {id: string, msg: string, error?: string}

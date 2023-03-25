@@ -7,6 +7,7 @@ import { ConversationListComponent } from './conversation-list/conversation-list
 import { MessageListComponent } from './message-list/message-list.component';
 import { AuthService } from './auth.service';
 import { StartComponent } from './start/start.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const canActivateAuth: CanActivateFn = () => {
   if (inject(AuthService).canActivate())
@@ -18,6 +19,7 @@ const canActivateAuth: CanActivateFn = () => {
 
 const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-up', component: SignUpComponent},
   {path: 'user-data/:id', component: UserDataComponent, canActivate: [canActivateAuth]},
   {path: '', component: StartComponent, canActivate: [canActivateAuth]}
 ]

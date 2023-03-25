@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { SendBarComponent } from './send-bar/send-bar.component';
 import { ErrorComponent } from './error/error.component';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
     HeaderComponent,
     SendBarComponent,
     ErrorComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
