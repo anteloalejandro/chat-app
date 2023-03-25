@@ -1,0 +1,13 @@
+<div id="search-component">
+  <input #searchBox id="search-box" placeholder="Hero Search"
+    (input)="search(searchBox.value)">
+
+  <ul class="search-result" *ngIf="users.length">
+    <li *ngFor="let user of users">
+      <a routerLink="/user-data/{{user._id}}" (click)="search('')">
+        {{user.username}}
+        <div><small>{{user.email}}</small></div>
+      </a>
+    </li>
+  </ul>
+</div>

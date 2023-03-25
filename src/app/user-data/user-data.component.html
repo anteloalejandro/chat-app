@@ -4,7 +4,13 @@
   </div>
   <h1>{{user.username}}</h1>
   <h2>{{user.email}}</h2>
-  <button (click)="goBack()">Go Back</button>
+  <div  *ngIf="showNewConvBtn">
+    <button (click)="goBack()">Go Back</button>
+    <button (click)="newConversation()">Start new conversation</button>
+  </div>
+  <div *ngIf="!showNewConvBtn">
+    <button (click)="goBack()">Go back to conversation</button>
+  </div>
 </div>
 <ng-template #elseBlock>
   <button (click)="getData()">Get user data</button>

@@ -21,4 +21,11 @@ export class ConversationService {
     const httpOptions = new HttpOptions('token='+this.authService.token)
     return this.http.get<Conversation[]>(url, httpOptions)
   }
+
+  new(recipient: string): Observable<Conversation> {
+    const url = this.conversationUrl
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.post<Conversation>(url, {recipient}, httpOptions)
+  }
 }

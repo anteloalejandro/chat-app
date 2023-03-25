@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
 })
 export class ConversationListComponent {
   public selected?: string
+  public showUserSearch = false
   public conversations: Conversation[] = []
   public checkedConversations = false
   public contacts: User[] = []

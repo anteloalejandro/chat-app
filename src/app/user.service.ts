@@ -40,6 +40,20 @@ export class UserService {
         catchError(this.handleError<User>()))
   }
 
+  getByEmail(email: string): Observable<User> {
+    const url = this.userUrl + '/byEmail/' + email
+    const httpOptions = new HttpOptions()
+
+    return this.http.get<User>(url, httpOptions)
+  }
+
+  search(email: string): Observable<User[]> {
+    const url = this.userUrl + '/search'
+    const httpOptions = new HttpOptions('email='+email)
+
+    return this.http.get<User[]>(url, httpOptions)
+  }
+
   getContacts(): Observable<User[]> {
     const url = this.userUrl + '/contacts'
     const httpOptions = new HttpOptions('token='+this.authService.token)

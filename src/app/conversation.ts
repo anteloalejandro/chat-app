@@ -5,5 +5,6 @@ export interface Conversation {
     user2: string
   },
   messages: string[],
-  __v: number
+  __v: number,
+  error?: string
 }

@@ -30,6 +30,15 @@ export class AuthService {
       )
   }
 
+  signUp(username: string, email: string, password: string): Observable<signUpResponse> {
+    const url = this.authUrl + '/sign-up'
+    return this.http.post<signUpResponse>(url, {
+      username: username,
+      email: email,
+      password: password
+    }, this.httpOptions)
+  }
+
   canActivate(): boolean {
     return this.token !== ''
   }
@@ -42,3 +51,5 @@ export class AuthService {
     }
   }
 }
+
+type signUpResponse = {id: string, msg: string}

@@ -1,4 +1,10 @@
-<h4>Conversations</h4>
+<div id="conv-header">
+  <h4>Conversations</h4>
+  <button (click)="showUserSearch = !showUserSearch">+</button>
+</div>
+<div *ngIf="showUserSearch">
+  <app-user-search></app-user-search>
+</div>
 <div *ngIf="!conversations.length && checkedConversations">
   <p>You have no conversations</p>
 </div>

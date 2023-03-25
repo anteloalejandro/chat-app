@@ -12,6 +12,7 @@ import { StartComponent } from './start/start.component';
 import { HeaderComponent } from './header/header.component';
 import { SendBarComponent } from './send-bar/send-bar.component';
 import { ErrorComponent } from './error/error.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ErrorComponent } from './error/error.component';
     StartComponent,
     HeaderComponent,
     SendBarComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
