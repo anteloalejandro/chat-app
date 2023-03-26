@@ -3,7 +3,7 @@
   <button (click)="showUserSearch = !showUserSearch">+</button>
 </div>
 <div *ngIf="showUserSearch">
-  <app-user-search></app-user-search>
+  <app-user-search/>
 </div>
 <div *ngIf="!conversations.length && checkedConversations">
   <p>You have no conversations</p>

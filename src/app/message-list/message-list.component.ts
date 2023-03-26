@@ -79,9 +79,6 @@ export class MessageListComponent {
       return true
     }
 
-
-    console.log(this.lastDate.toLocaleDateString(), date.toLocaleDateString())
-
     const dayDiff = date.getDate() - this.lastDate.getDate()
     const monthDiff = date.getMonth() - this.lastDate.getMonth()
     const yearDiff = date.getFullYear() - this.lastDate.getFullYear()
