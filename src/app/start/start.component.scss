@@ -10,6 +10,14 @@
     padding: .5rem;
   }
 
+  &.container-mobile {
+    grid-template-columns: 1fr;
+  }
+
+  &.container-pc {
+    grid-template-columns: 30ch 1fr 40ch;
+  }
+
 }
 
 #back-btn {

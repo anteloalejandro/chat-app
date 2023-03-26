@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConversationService } from '../conversation.service';
 import { User } from '../user';
@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-data.component.scss'],
 })
 export class UserDataComponent {
-  public user?: User
+  @Input() user?: User
   public showNewConvBtn = false
   constructor(
     private userService: UserService,
@@ -21,12 +21,14 @@ export class UserDataComponent {
   ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.getData(id ? id : undefined)
+    const idParam = this.route.snapshot.paramMap.get('id')
+    this.getData(idParam ? idParam : undefined)
   }
 
   getData(id?: string) {
     if (!id) {
+      if (this.user)
+        return
       this.user = this.userService.user
       return
     } else if (id == this.userService.contact?._id) {

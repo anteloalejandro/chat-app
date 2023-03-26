@@ -1,4 +1,4 @@
-<div *ngIf="user && !user.error; else elseBlock">
+<div *ngIf="user && !user.error">
   <div id="pfp">
     <img src="/assets/inspiration-geometry.png" alt="">
   </div>
@@ -12,6 +12,3 @@
     <button (click)="goBack()">Go back to conversation</button>
   </div>
 </div>
-<ng-template #elseBlock>
-  <button (click)="getData()">Get user data</button>
-</ng-template>

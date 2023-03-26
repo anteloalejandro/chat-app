@@ -11,6 +11,8 @@ import { UserService } from '../user.service';
 export class StartComponent {
   public conversation?: string
   public mobileLayout = false
+  public pcLayout = false
+  public layout: 'pc' | 'mobile' | 'default' = 'default'
   public mobileView: 'conversations' | 'messages' = 'conversations'
 
   public view = '/conversation-list'
@@ -22,9 +24,17 @@ export class StartComponent {
 
   ngOnInit() {
     const mobile = '(max-width: 600px)'
-    this.responsive.observe(mobile)
+    const pc = '(min-width: 1200px)'
+    this.responsive.observe([mobile, pc])
       .subscribe(state => {
-        this.mobileLayout = !!state.matches
+        this.mobileLayout = state.breakpoints[mobile]
+        this.pcLayout = state.breakpoints[pc]
+        if (this.mobileLayout)
+          this.layout = 'mobile'
+        else if (this.pcLayout)
+          this.layout = 'pc'
+        else
+          this.layout = 'default'
       })
   }
 
@@ -40,5 +50,9 @@ export class StartComponent {
   switchToConversations() {
     this.mobileView = 'conversations'
     this.userService.contact = undefined
+  }
+
+  getContact() {
+    return this.userService.contact
   }
 }
