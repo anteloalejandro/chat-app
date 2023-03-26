@@ -1,9 +1,17 @@
 <div *ngIf="conversation; else elseBlock">
   <ul class="messages">
-    <li *ngFor="let message of messages" class="message"
-      [ngClass]="message.author === user?._id ? 'sent' : 'recieved'">
-      {{message.content}}
-    </li>
+    <div class="messageElmnt" [ngClass]="message.author === user?._id ? 'sent' : 'recieved'"
+      *ngFor="let message of messages">
+      <div class="date" *ngIf="isDifferentDate(message)">
+        <span>{{dateToDateStr(message)}}</span>
+      </div>
+      <li class="message">
+        {{message.content}}
+        <div class="time">
+          <small>{{dateToTimeStr(message)}}</small>
+        </div>
+      </li>
+    </div>
   </ul>
   <app-send-bar [conversation]="conversation"
     (onMessageRecieved)="addMessage($event)"/>

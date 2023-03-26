@@ -13,6 +13,8 @@ export class MessageListComponent {
   public messages: Message[] = []
   @Input() conversation?: string
   public user?: User
+  private lastDate?: Date
+
   constructor(
     private messageService: MessageService,
     private userService: UserService
@@ -58,5 +60,33 @@ export class MessageListComponent {
         lastMsg.scrollIntoView(options)
       }
     })
+  }
+
+  dateToDateStr(message: Message) {
+    const date = new Date(message.date)
+    return date.toLocaleDateString()
+  }
+
+  dateToTimeStr(message: Message) {
+    const date = new Date(message.date)
+    return date.toLocaleTimeString()
+  }
+
+  isDifferentDate(message: Message) {
+    const date = new Date(message.date)
+    if (!this.lastDate) {
+      this.lastDate = date
+      return true
+    }
+
+
+    console.log(this.lastDate.toLocaleDateString(), date.toLocaleDateString())
+
+    const dayDiff = date.getDate() - this.lastDate.getDate()
+    const monthDiff = date.getMonth() - this.lastDate.getMonth()
+    const yearDiff = date.getFullYear() - this.lastDate.getFullYear()
+
+    this.lastDate = date
+    return dayDiff || monthDiff || yearDiff
   }
 }
