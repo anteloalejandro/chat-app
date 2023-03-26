@@ -17,7 +17,7 @@ export class StartComponent {
   constructor(
     private responsive: BreakpointObserver,
     private router: Router,
-    public userService: UserService
+    private userService: UserService
   ) {}
 
   ngOnInit() {

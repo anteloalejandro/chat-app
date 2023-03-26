@@ -1,19 +1,9 @@
-<div class="container" *ngIf="!mobileLayout">
-  <aside>
-    <app-conversation-list (onSelectConversation)="setConversation($event)"></app-conversation-list>
+<div [ngClass]="mobileLayout ? 'container-mobile' : 'container'">
+  <aside *ngIf="!mobileLayout || mobileView == 'conversations'">
+    <app-conversation-list (onSelectConversation)="setConversation($event)"/>
   </aside>
-  <div>
-    <app-message-list [conversation]="conversation"></app-message-list>
-  </div>
-</div>
-<div class="container-mobile" *ngIf="mobileLayout" [ngSwitch]="mobileView">
-  <div *ngSwitchCase="'messages'">
-    <button (click)="switchToConversations()" id="back-btn">&ltri;</button>
-    <app-message-list
-      [conversation]="conversation"/>
-  </div>
-  <div *ngSwitchCase="'conversations'">
-    <app-conversation-list
-      (onSelectConversation)="setConversation($event)"/>
+  <div *ngIf="!mobileLayout || mobileView == 'messages'">
+    <button *ngIf="mobileLayout" (click)="switchToConversations()" id="back-btn">&ltri;</button>
+    <app-message-list [conversation]="conversation"/>
   </div>
 </div>

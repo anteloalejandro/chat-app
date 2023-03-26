@@ -1,8 +1,8 @@
 <header>
   <div>
-    <span *ngIf="userService.contact">
-      <a routerLink="/user-data/{{userService.contact._id}}">
-        {{userService.contact.username}}
+    <span *ngIf="getContact() && isOnStart()">
+      <a routerLink="/user-data/{{contact?._id}}">
+        {{contact?.username}}
       </a>
     </span>
   </div>
