@@ -27,6 +27,9 @@ export class UserSearchComponent {
       distinctUntilChanged(),
       switchMap((term: string) => this.userService.search(term))
     )
-      .subscribe(users => this.users = users.filter(u => u != this.userService.user))
+      .subscribe(users => {
+        this.users =
+          users.filter( u => u._id != this.userService.user?._id)
+      })
   }
 }

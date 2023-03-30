@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConversationService } from '../conversation.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -16,6 +16,7 @@ export class UserDataComponent {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private conversationService: ConversationService
   ) { }
@@ -61,8 +62,20 @@ export class UserDataComponent {
     //this.goBack()
   }
 
+  delete() {
+
+  }
+
   goBack() {
     this.location.back()
     this.userService.contact = undefined
+  }
+
+  isOnStart() {
+    return this.router.url == '/'
+  }
+
+  getCurrentUser() {
+    return this.userService.user
   }
 }

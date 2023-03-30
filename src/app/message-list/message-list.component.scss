@@ -33,11 +33,11 @@
 
     .date {
       text-align: center;
+      margin-block: .8rem;
       & > * {
         width: fit-content;
         border-radius: 1rem;
         padding: .5rem;
-        margin-block: .8rem;
         background-color: rgba($color: black, $alpha: .5);
       }
     }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { User } from '../user';
@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.scss']
 })
-export class MessageListComponent {
+export class MessageListComponent implements AfterContentChecked {
   public messages: Message[] = []
   @Input() conversation?: string
   public user?: User
@@ -17,11 +17,19 @@ export class MessageListComponent {
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private changeDetector: ChangeDetectorRef
+
   ) {}
 
   ngOnInit() {
     this.user = this.userService.user
+  }
+
+  // 'Expression has changed after it was checked' fix.
+  // It's not needed in production
+  ngAfterContentChecked() : void {
+    this.changeDetector.detectChanges();
   }
 
   ngOnChanges() {
@@ -54,7 +62,7 @@ export class MessageListComponent {
       {behavior: smooth ? 'smooth' : 'auto'}
 
     var tmp = setInterval(() => {
-      const lastMsg = document.querySelector('.message:last-of-type')
+      const lastMsg = document.querySelector('.messageElmnt:last-of-type')
       if (lastMsg) {
         clearInterval(tmp)
         lastMsg.scrollIntoView(options)
@@ -76,6 +84,8 @@ export class MessageListComponent {
     const date = new Date(message.date)
     if (!this.lastDate) {
       this.lastDate = date
+      console.log('no previous date, returning true');
+
       return true
     }
 

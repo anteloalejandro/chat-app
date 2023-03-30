@@ -9,7 +9,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  contact = this.userService.contact
+  public contact = this.userService.contact
+  public user = this.userService.user
   constructor(
     private userService: UserService,
     private router: Router
@@ -22,5 +23,10 @@ export class HeaderComponent {
   getContact() {
     this.contact = this.userService.contact
     return this.userService.contact
+  }
+
+  getUser() {
+    this.user = this.userService.user
+    return this.userService.user
   }
 }

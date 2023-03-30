@@ -15,7 +15,9 @@
   }
 
   &.container-pc {
-    grid-template-columns: 30ch 1fr 40ch;
+    grid-template-columns: 30ch 1fr;
+    grid-auto-flow: column;
+    grid-auto-columns: 40ch;
   }
 
 }

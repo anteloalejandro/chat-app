@@ -11,4 +11,9 @@ header {
     padding: .5rem 1rem;
     color: white
   }
+
+  & > * {
+    display: flex;
+    gap: 1rem;
+  }
 }

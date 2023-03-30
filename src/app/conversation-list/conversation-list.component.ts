@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversation } from '../conversation';
 import { ConversationService } from '../conversation.service';
 import { User } from '../user';
@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./conversation-list.component.scss']
 })
 export class ConversationListComponent {
-  public selected?: string
+  @Input() selected?: string
   public showUserSearch = false
   public conversations: Conversation[] = []
   public checkedConversations = false

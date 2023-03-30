@@ -1,10 +1,14 @@
 <header>
   <div>
-    <span *ngIf="getContact() && isOnStart()">
-      <a routerLink="/user-data/{{contact?._id}}">
-        {{contact?.username}}
-      </a>
-    </span>
+    <a *ngIf="getContact() && isOnStart()" routerLink="/user-data/{{contact?._id}}">
+      {{contact?.username}}
+    </a>
   </div>
-  <a routerLink="/sign-in">Sign in</a>
+  <div>
+    <a *ngIf="getUser() && isOnStart()"
+      routerLink="/user-data/{{user?._id}}">
+      About me
+    </a>
+    <a routerLink="/sign-in">Sign in</a>
+  </div>
 </header>
