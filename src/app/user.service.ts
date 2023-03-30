@@ -60,6 +60,12 @@ export class UserService {
     return this.http.get<User[]>(url, httpOptions)
   }
 
+  deleteUser(): Observable<User> {
+    const url = this.userUrl
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+    return this.http.delete<User>(url, httpOptions)
+  }
+
   whoAmI(user1: string, user2: string): string {
     const me = this.user
     const alsoMe = me?._id == user1 ? user1 : user2

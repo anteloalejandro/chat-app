@@ -63,7 +63,8 @@ export class UserDataComponent {
   }
 
   delete() {
-
+    if (confirm('¿Are you sure you want to delete your account?'))
+      this.userService.deleteUser().subscribe()
   }
 
   goBack() {
