@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UserService } from '../user.service';
 
@@ -18,7 +17,6 @@ export class StartComponent {
   public view = '/conversation-list'
   constructor(
     private responsive: BreakpointObserver,
-    private router: Router,
     private userService: UserService
   ) {}
 
@@ -29,8 +27,11 @@ export class StartComponent {
       .subscribe(state => {
         this.mobileLayout = state.breakpoints[mobile]
         this.pcLayout = state.breakpoints[pc]
-        if (this.mobileLayout)
+        if (this.mobileLayout) {
           this.layout = 'mobile'
+          if (this.conversation)
+            this.mobileView = 'messages'
+        }
         else if (this.pcLayout)
           this.layout = 'pc'
         else

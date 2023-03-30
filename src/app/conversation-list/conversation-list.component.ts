@@ -48,6 +48,8 @@ export class ConversationListComponent {
           break
         }
       }
+      if (!this.conversationContactMap.has(conv._id))
+        this.conversationContactMap.set(conv._id, '[deleted account]')
     }
   }
 

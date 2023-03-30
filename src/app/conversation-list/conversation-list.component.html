@@ -13,7 +13,7 @@
     <li *ngFor="let conversation of conversations; let i = index">
       <a class="link" (click)="selectConversation(conversation._id)"
         [ngClass]="selected == conversation._id ? 'selected' : ''">
-        {{conversationContactMap.get(conversation._id) ? conversationContactMap.get(conversation._id) : '[deleted account]'}}
+        {{conversationContactMap.get(conversation._id)}}
       </a>
     </li>
   </ul>
