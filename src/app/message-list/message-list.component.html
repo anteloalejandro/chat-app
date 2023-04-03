@@ -1,23 +1,11 @@
 <div *ngIf="conversation; else elseBlock">
   <ul class="messages">
-    <div class="messageElmnt" [ngClass]="message.author === user?._id ? 'sent' : 'recieved'"
-      *ngFor="let message of messages">
+    <div class="message-container" *ngFor="let message of messages">
       <div class="date" *ngIf="isDifferentDate(message)">
         <span>{{dateToDateStr(message)}}</span>
       </div>
       <li class="message">
-        <span *ngIf="message.status == 'deleted'"><em>[deleted]</em></span>
-        <span *ngIf="message.status != 'deleted'">{{message.content}}</span>
-        <div id="msg-info">
-          <div class="time">
-            <small>{{dateToTimeStr(message)}}</small>
-          </div>
-          <div class="status" [ngSwitch]="message.status" *ngIf="message.author === user?._id">
-            <span *ngSwitchCase="'sent'" style="color: darkslategrey">🗸</span>
-            <span *ngSwitchCase="'recieved'" style="color: lightgreen; letter-spacing: -0.5ch; padding-inline: .5ch">🗸🗸</span>
-            <span *ngSwitchCase="'deleted'" style="color: coral">X</span>
-          </div>
-        </div>
+        <app-message [isSent]="message.author === user?._id" [message]="message"/>
       </li>
     </div>
   </ul>

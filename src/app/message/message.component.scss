@@ -1,0 +1,26 @@
+:host > span {
+  width: fit-content;
+  max-width: 80%;
+  list-style-type: none;
+  border-radius: .5rem;
+  padding: .25rem .5rem;
+  align-items: center;
+
+  &.sent {
+    background-color: royalblue;
+    float: right;
+  }
+  &.recieved {
+    background-color: darken(desaturate(royalblue, 40), 20);
+    float: left
+  }
+  #msg-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .time {
+    text-align: left;
+  }
+}
+

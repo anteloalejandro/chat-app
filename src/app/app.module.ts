@@ -14,6 +14,7 @@ import { SendBarComponent } from './send-bar/send-bar.component';
 import { ErrorComponent } from './error/error.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SendBarComponent,
     ErrorComponent,
     UserSearchComponent,
-    SignUpComponent
+    SignUpComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

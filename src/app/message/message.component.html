@@ -1,0 +1,15 @@
+<span [ngClass]="isSent ? 'sent' : 'recieved'">
+  <span *ngIf="message.status == 'deleted'"><em>[deleted]</em></span>
+  <span *ngIf="message.status != 'deleted'">{{message.content}}</span>
+  <div id="msg-info">
+    <div class="time">
+      <small>{{dateToTimeStr()}}</small>
+    </div>
+    <div class="status status-{{message.status}}"
+      [ngSwitch]="message.status" *ngIf="isSent">
+      <span *ngSwitchCase="'sent'" style="color: darkslategrey">🗸</span>
+      <span *ngSwitchCase="'recieved'" style="color: lightgreen; letter-spacing: -0.5ch; padding-inline: .5ch">🗸🗸</span>
+      <span *ngSwitchCase="'deleted'" style="color: coral">X</span>
+    </div>
+  </div>
+</span>
