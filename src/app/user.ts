@@ -5,5 +5,6 @@ export interface User {
   password: string | null | undefined,
   __v: number,
   conversations: string[],
+  profilePicture?: string,
   error?: string
 }

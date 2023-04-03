@@ -4,5 +4,6 @@ export interface Message {
   date: Date,
   author: string,
   conversation: string,
+  status: 'sent' | 'recieved' | 'deleted',
   __v: number
 }

@@ -6,5 +6,7 @@ export interface Conversation {
   },
   messages: string[],
   __v: number,
+  backgroundImg?: string,
+  backgroundColor?: string,
   error?: string
 }
