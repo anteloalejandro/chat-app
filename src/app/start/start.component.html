@@ -8,6 +8,6 @@
     <app-message-list [conversation]="conversation"/>
   </div>
   <div *ngIf="pcLayout && getContact() as contact">
-    <app-user-data [user]="contact"/>
+    <app-contact-data [user]="contact"/>
   </div>
 </div>

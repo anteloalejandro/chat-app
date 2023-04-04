@@ -15,6 +15,7 @@ import { ErrorComponent } from './error/error.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MessageComponent } from './message/message.component';
+import { ContactDataComponent } from './contact-data/contact-data.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MessageComponent } from './message/message.component';
     ErrorComponent,
     UserSearchComponent,
     SignUpComponent,
-    MessageComponent
+    MessageComponent,
+    ContactDataComponent
   ],
   imports: [
     BrowserModule,

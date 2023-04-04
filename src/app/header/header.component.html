@@ -1,12 +1,12 @@
 <header>
   <div>
-    <a class="username" *ngIf="getContact() && isOnStart()" routerLink="/user-data/{{contact?._id}}">
+    <a class="username" *ngIf="getContact() && isOnStart()" routerLink="/contact-data/{{contact?._id}}">
       {{username()}}
     </a>
   </div>
   <div>
     <a *ngIf="getUser() && isOnStart()"
-      routerLink="/user-data/{{user?._id}}">
+      routerLink="/user-data">
       About me
     </a>
     <a routerLink="/sign-in">Sign in</a>

@@ -1,4 +1,4 @@
-<div *ngIf="user && user._id == getCurrentUser()?._id; else elseBlock">
+<div *ngIf="user">
   <h3>You'll be able to edit your profile in the future</h3>
   <div id="pfp">
     <img src="/assets/inspiration-geometry.png" alt="">
@@ -6,22 +6,5 @@
   <h1>{{user.username}}</h1>
   <h2>{{user.email}}</h2>
   <button (click)="goBack()">Go Back</button>
-  <button (click)="deleteContact()" id="delete">Delete account</button>
+  <button (click)="deleteAccount()" id="delete">Delete account</button>
 </div>
-<ng-template #elseBlock>
-  <div *ngIf="user && !user.error">
-    <div id="pfp">
-      <img src="/assets/inspiration-geometry.png" alt="">
-    </div>
-    <h1>{{user.username}}</h1>
-    <h2>{{user.email}}</h2>
-    <div *ngIf="showNewConvBtn">
-      <button (click)="goBack()">Go Back</button>
-      <button (click)="newConversation()">Start new conversation</button>
-    </div>
-    <div *ngIf="!showNewConvBtn && !isOnStart()">
-      <button (click)="goBack()">Go back to conversation</button>
-      <button (click)="deleteConversation()" id="delete">Delete conversation</button>
-    </div>
-  </div>
-</ng-template>

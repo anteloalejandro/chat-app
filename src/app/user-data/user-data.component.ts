@@ -11,8 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-data.component.scss'],
 })
 export class UserDataComponent {
-  @Input() user?: User
-  public showNewConvBtn = false
+  public user?: User
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -23,50 +22,15 @@ export class UserDataComponent {
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id')
-    this.getData(idParam ? idParam : undefined)
+    this.getUser()
   }
 
-  getData(id?: string) {
-    if (!id) {
-      if (this.user)
-        return
-      this.user = this.userService.user
-      return
-    } else if (id == this.userService.contact?._id) {
-      this.user = this.userService.contact
-    } else {
-      this.userService.getUser(id)
-        .subscribe(user => this.user = user)
-    }
-    this.userService.getContacts()
-      .subscribe(contacts => {
-        const contactIds = contacts.map(c => c._id)
-        this.showNewConvBtn = !contactIds.includes(id)
-      })
+  getUser() {
+    this.user = this.userService.user
+    return this.user
   }
 
-  newConversation() {
-    if (!this.user || this.user == this.userService.user)
-      return
-
-    this.conversationService.new(this.user._id)
-      .subscribe(conversation => {
-        if (conversation.error)
-          console.error(
-            'error: '+conversation.error,
-            'current user:'+this.userService.user?.username
-          )
-        else
-          this.goBack()
-      })
-    //this.goBack()
-  }
-
-  deleteConversation() {
-    alert('not implemented yet')
-  }
-
-  deleteContact() {
+  deleteAccount() {
     if (confirm('¿Are you sure you want to delete your account?'))
       this.userService.deleteUser().subscribe()
   }
@@ -74,10 +38,6 @@ export class UserDataComponent {
   goBack() {
     this.location.back()
     this.userService.contact = undefined
-  }
-
-  isOnStart() {
-    return this.router.url == '/'
   }
 
   getCurrentUser() {
