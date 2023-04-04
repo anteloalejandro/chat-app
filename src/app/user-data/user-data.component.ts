@@ -62,7 +62,11 @@ export class UserDataComponent {
     //this.goBack()
   }
 
-  delete() {
+  deleteConversation() {
+    alert('not implemented yet')
+  }
+
+  deleteContact() {
     if (confirm('¿Are you sure you want to delete your account?'))
       this.userService.deleteUser().subscribe()
   }

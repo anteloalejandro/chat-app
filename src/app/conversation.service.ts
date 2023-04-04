@@ -28,4 +28,11 @@ export class ConversationService {
 
     return this.http.post<Conversation>(url, {recipient}, httpOptions)
   }
+
+  delete(id: string): Observable<Conversation> {
+    const url = this.conversationUrl + '/id'
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.delete<Conversation>(url, httpOptions)
+  }
 }
