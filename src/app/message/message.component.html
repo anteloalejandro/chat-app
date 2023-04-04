@@ -1,15 +1,22 @@
 <span [ngClass]="isSent ? 'sent' : 'recieved'">
   <span *ngIf="message.status == 'deleted'"><em>[deleted]</em></span>
   <span *ngIf="message.status != 'deleted'">{{message.content}}</span>
-  <div id="msg-info">
+  <div class="msg-dropdown-container" *ngIf="isSent">
+    <span class="msg-dropdown-toggle" (click)="toggleDrodown()">V</span>
+    <div class="msg-dropdown" *ngIf="showDropdown">
+      <a class="delete" (click)="deleteMessage()">Delete</a>
+      <a class="link">Other action</a>
+    </div>
+  </div>
+  <div class="msg-info">
     <div class="time">
       <small>{{dateToTimeStr()}}</small>
     </div>
     <div class="status status-{{message.status}}"
       [ngSwitch]="message.status" *ngIf="isSent">
-      <span *ngSwitchCase="'sent'" style="color: darkslategrey">🗸</span>
-      <span *ngSwitchCase="'recieved'" style="color: lightgreen; letter-spacing: -0.5ch; padding-inline: .5ch">🗸🗸</span>
-      <span *ngSwitchCase="'deleted'" style="color: coral">X</span>
+      <span *ngSwitchCase="'sent'">🗸</span>
+      <span *ngSwitchCase="'recieved'">🗸🗸</span>
+      <span *ngSwitchCase="'deleted'">X</span>
     </div>
   </div>
 </span>

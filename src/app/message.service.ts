@@ -31,6 +31,13 @@ export class MessageService {
 
     return this.http.post<Message>(url, message, httpOptions)
   }
+
+  delete(id: string): Observable<Message> {
+    const url = this.messsageUrl + '/' + id
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.delete<Message>(url, httpOptions)
+  }
 }
 
 type messagePost = {

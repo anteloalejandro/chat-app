@@ -62,7 +62,7 @@ export class MessageListComponent implements AfterContentChecked {
       {behavior: smooth ? 'smooth' : 'auto'}
 
     var tmp = setInterval(() => {
-      const lastMsg = document.querySelector('.messageElmnt:last-of-type')
+      const lastMsg = document.querySelector('.message-container:last-of-type')
       if (lastMsg) {
         clearInterval(tmp)
         lastMsg.scrollIntoView(options)

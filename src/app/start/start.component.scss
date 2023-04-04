@@ -24,6 +24,7 @@
 
 #back-btn {
   position: fixed;
+  z-index: 5;
   cursor: pointer;
   top: calc(.5rem + var(--header-height));
   left: .5rem;

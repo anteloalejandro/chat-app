@@ -5,6 +5,11 @@
   border-radius: .5rem;
   padding: .25rem .5rem;
   align-items: center;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .4rem;
 
   &.sent {
     background-color: royalblue;
@@ -14,13 +19,58 @@
     background-color: darken(desaturate(royalblue, 40), 20);
     float: left
   }
-  #msg-info {
+  .msg-info {
+    grid-column: 1/-1;
+
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
+
+    .time {
+      text-align: left;
+    }
+
+    .status {
+      letter-spacing: -0.5ch;
+      padding-inline: .5ch;
+      &.status-sent { color: whitesmoke }
+      &.status-recieved { color: lightgreen }
+      &.status-deleted { color: coral }
+    }
   }
-  .time {
-    text-align: left;
+  .msg-dropdown-container {
+    .msg-dropdown-toggle {
+      color: rgba(white, .5);
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
+    .msg-dropdown {
+      z-index: 1;
+      background-color: rgba(black, .7);
+      position: absolute;
+      right: 0;
+      border-radius: .5rem;
+      overflow: hidden;
+      & > * {
+        padding: .5rem;
+        display: block;
+        text-decoration: underline;
+      }
+      & > :not(:last-of-type) {
+        border-bottom: 1px solid white;
+      }
+
+      .delete {
+        color: coral;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
+
 }
 
