@@ -29,4 +29,16 @@ export class HeaderComponent {
     this.user = this.userService.user
     return this.userService.user
   }
+
+  username() {
+    const maxChars = 8
+    let username = this.contact?.username
+    if (!username)
+      return username
+
+    if (username.length >= maxChars)
+      username = username.slice(0, maxChars - 3) + '...'
+
+    return username
+  }
 }

@@ -1,7 +1,7 @@
 <header>
   <div>
-    <a *ngIf="getContact() && isOnStart()" routerLink="/user-data/{{contact?._id}}">
-      {{contact?.username}}
+    <a class="username" *ngIf="getContact() && isOnStart()" routerLink="/user-data/{{contact?._id}}">
+      {{username()}}
     </a>
   </div>
   <div>
