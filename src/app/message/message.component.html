@@ -1,7 +1,7 @@
 <span [ngClass]="isSent ? 'sent' : 'recieved'">
   <span *ngIf="message.status == 'deleted'"><em>[deleted]</em></span>
   <span *ngIf="message.status != 'deleted'">{{message.content}}</span>
-  <div class="msg-dropdown-container" *ngIf="isSent">
+  <div class="msg-dropdown-container" *ngIf="isSent && message.status != 'deleted'">
     <span class="msg-dropdown-toggle" (click)="toggleDrodown()">V</span>
     <div class="msg-dropdown" *ngIf="showDropdown">
       <a class="delete" (click)="deleteMessage()">Delete</a>
