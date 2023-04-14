@@ -66,6 +66,14 @@ export class UserService {
     return this.http.delete<User>(url, httpOptions)
   }
 
+  updateUser(user: User): Observable<User> {
+    const url = this.userUrl
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.put<User>(url, user, httpOptions)
+      .pipe(tap(_ => this.user = _))
+  }
+
   whoAmI(user1: string, user2: string): string {
     const me = this.user
     const alsoMe = me?._id == user1 ? user1 : user2

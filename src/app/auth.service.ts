@@ -30,13 +30,25 @@ export class AuthService {
       )
   }
 
-  signUp(username: string, email: string, password: string): Observable<signUpResponse> {
+  signUp(username: string, email: string, password: string): Observable<authResponse> {
     const url = this.authUrl + '/sign-up'
-    return this.http.post<signUpResponse>(url, {
+    return this.http.post<authResponse>(url, {
       username: username,
       email: email,
       password: password
     }, this.httpOptions)
+  }
+
+  signOut() {
+    this.token = ''
+  }
+
+  changePassword(newPassword: string): Observable<authResponse> {
+    const url = this.authUrl + '/change-password'
+    const httpOptions = new HttpOptions('token='+this.token)
+    return this.http.put<authResponse>(url, {
+      password: newPassword
+    }, httpOptions)
   }
 
   canActivate(): boolean {
@@ -52,4 +64,4 @@ export class AuthService {
   }
 }
 
-type signUpResponse = {id: string, msg: string, error?: string}
+type authResponse = {id: string, msg: string, error?: string}

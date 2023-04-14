@@ -13,24 +13,56 @@
   overflow: hidden;
   background-color: black;
   border: .2rem solid rgba($color: white, $alpha: .2);
+  display: grid;
+  place-items: center;
   img {
-    width: 100px;
+    width: 100%;
+
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  & + * {
+    margin-top: .5rem;
+    text-align: center;
   }
 }
 
-button {
-  background-color: #363636;
-  border-radius: 10px;
-  padding: .5rem 1rem;
-  color: white;
-  border: none;
-  margin: .5rem auto;
-  display: block;
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  button {
+    background-color: #363636;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    color: white;
+    border: none;
+    &#delete {
+      background-color: lightcoral;
+      &:hover {
+        background-color: coral;
+      }
+    }
+  }
+}
 
-  &#delete {
-    background-color: lightcoral;
-    &:hover {
-      background-color: coral;
+form {
+  input {
+    background: none;
+    color: inherit;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    outline: none;
+
+    border-radius: .5rem;
+    padding: .5rem;
+    &:enabled {
+      &:hover, &:active {
+        background-color: #363636;
+      }
     }
   }
 }

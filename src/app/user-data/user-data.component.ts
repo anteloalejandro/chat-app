@@ -12,6 +12,8 @@ import { UserService } from '../user.service';
 })
 export class UserDataComponent {
   public user?: User
+  private userCopy?: User
+  public edit = false
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -22,7 +24,7 @@ export class UserDataComponent {
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id')
-    this.getUser()
+    this.userCopy = this.getUser()
   }
 
   getUser() {
@@ -40,7 +42,48 @@ export class UserDataComponent {
     this.userService.contact = undefined
   }
 
-  getCurrentUser() {
-    return this.userService.user
+  toggleEdit() {
+    this.edit = !this.edit
+    if (this.edit)
+      this.userCopy = Object.assign({}, this.user)
+  }
+
+  cancelEdit() {
+    this.user = this.userCopy
+    console.log('restoring user')
+  }
+
+  updateUser() {
+    if (!this.user) return
+
+    this.userService.updateUser(this.user)
+      .subscribe(user => {
+        if (user.error) return
+
+        this.toggleEdit()
+      })
+  }
+
+  changePasswd() {
+    if (!this.user || !this.userCopy)
+      return
+
+    const confirmMsg = 'Save changes before changing your password?'
+    console.log(this.user, this.userCopy)
+    let hasChanged = false
+    if (this.user.username !== this.userCopy.username)
+      hasChanged = true
+    if (this.user.email !== this.userCopy.email)
+      hasChanged = true
+    if (this.user.profilePicture !== this.userCopy.profilePicture)
+      hasChanged = true
+
+    if (hasChanged)
+      if (confirm(confirmMsg))
+        this.updateUser()
+
+    this.cancelEdit()
+    this.router.navigate(['change-password'])
+
   }
 }

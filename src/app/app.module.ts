@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MessageComponent } from './message/message.component';
 import { ContactDataComponent } from './contact-data/contact-data.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import { ContactDataComponent } from './contact-data/contact-data.component';
     UserSearchComponent,
     SignUpComponent,
     MessageComponent,
-    ContactDataComponent
+    ContactDataComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
