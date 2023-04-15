@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SocketIoService } from '../socket-io.service';
-import { User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -12,13 +11,13 @@ import { UserService } from '../user.service';
 })
 export class SignInComponent {
   error?: string
-  user?: User
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private socketService: SocketIoService,
     private router: Router
   ) {}
+
   signIn(email: string, password: string) {
     if (!(email || password))
       return
@@ -32,12 +31,15 @@ export class SignInComponent {
 
         console.log(authToken.token)
         console.log(this.authService.token)
-        this.userService.getUser()
-          .subscribe(user => {
-            this.user = user
-            this.socketService.joinRoom(user._id)
-            this.router.navigate(['/'])
-          })
+        this.getUser()
       })
   }
+
+  getUser() {
+    this.userService.getUser()
+      .subscribe(user => {
+        this.router.navigate(['/'])
+      })
+  }
+
 }

@@ -5,7 +5,7 @@
         <span>{{dateToDateStr(message)}}</span>
       </div>
       <li class="message">
-        <app-message [isSent]="message.author === user?._id" [message]="message"/>
+        <app-message [isSent]="message.author === user()?._id" [message]="message"/>
       </li>
     </div>
   </ul>

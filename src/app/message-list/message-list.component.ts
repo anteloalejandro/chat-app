@@ -12,7 +12,6 @@ import { UserService } from '../user.service';
 export class MessageListComponent implements AfterContentChecked {
   public messages: Message[] = []
   @Input() conversation?: string
-  public user?: User
   private lastDate?: Date
 
   constructor(
@@ -22,8 +21,8 @@ export class MessageListComponent implements AfterContentChecked {
 
   ) {}
 
-  ngOnInit() {
-    this.user = this.userService.user
+  user() {
+    return this.userService.user
   }
 
   // 'Expression has changed after it was checked' fix.

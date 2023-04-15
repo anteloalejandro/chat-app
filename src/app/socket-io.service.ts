@@ -17,6 +17,10 @@ export class SocketIoService {
     this.socket.emit('join', room)
   }
 
+  leaveRoom(room: string) {
+    console.log('leave room '+ room +' or smth idk')
+  }
+
   send(message: Message) {
     this.socket.emit('message', message)
   }

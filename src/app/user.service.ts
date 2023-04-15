@@ -17,7 +17,10 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) { }
+  ) {
+    if (this.authService.token)
+      this.getUser().subscribe()
+  }
 
   getUser(id?: string): Observable<User> {
     let url = this.userUrl + '/'

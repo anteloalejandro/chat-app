@@ -19,6 +19,7 @@ export class SignUpComponent {
     private socketService: SocketIoService,
     private router: Router
   ) {}
+
   signUp(username: string, email: string, password: string) {
     if (!(username || email || password))
       return

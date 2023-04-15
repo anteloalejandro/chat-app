@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ConversationService } from '../conversation.service';
+import {  Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -15,21 +15,22 @@ export class UserDataComponent {
   private userCopy?: User
   public edit = false
   constructor(
+    private authService: AuthService,
     private userService: UserService,
-    private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private conversationService: ConversationService
   ) { }
 
   ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id')
-    this.userCopy = this.getUser()
+    this.getUser()
   }
 
   getUser() {
-    this.user = this.userService.user
-    return this.user
+    console.log(this.authService.token)
+    this.userService.getUser().subscribe(user => {
+      this.user = user
+      this.userCopy = this.user
+    })
   }
 
   deleteAccount() {

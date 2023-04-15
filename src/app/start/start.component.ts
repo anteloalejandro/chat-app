@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UserService } from '../user.service';
+import { SocketIoService } from '../socket-io.service';
 
 @Component({
   selector: 'app-start',
@@ -17,10 +18,12 @@ export class StartComponent {
   public view = '/conversation-list'
   constructor(
     private responsive: BreakpointObserver,
-    private userService: UserService
+    private userService: UserService,
+    private socketService: SocketIoService
   ) {}
 
   ngOnInit() {
+    this.getUserAndJoin()
     const mobile = '(max-width: 600px)'
     const pc = '(min-width: 1200px)'
     this.responsive.observe([mobile, pc])
@@ -39,6 +42,10 @@ export class StartComponent {
       })
   }
 
+  ngOnDestroy() {
+    this.socketService
+  }
+
   setConversation(id: string) {
     this.conversation = id
     console.log('conversation set to: '+this.conversation)
@@ -55,5 +62,11 @@ export class StartComponent {
 
   getContact() {
     return this.userService.contact
+  }
+
+  getUserAndJoin() {
+    const user = this.userService.user
+    if (user)
+      this.socketService.joinRoom(user._id)
   }
 }
