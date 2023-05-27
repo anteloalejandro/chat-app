@@ -63,7 +63,14 @@ export class ContactDataComponent {
   }
 
   deleteConversation() {
-    alert('not implemented yet')
+    const userConvs = this.userService.user!.conversations
+    const contConvs = this.userService.contact!.conversations
+
+    const intersection = userConvs!.filter(c => contConvs!.includes(c))
+    this.conversationService.delete(intersection[0])
+      .subscribe(() => {
+        this.router.navigate(['/'])
+      })
   }
 
   deleteContact() {

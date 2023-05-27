@@ -17,9 +17,9 @@ export class SignInComponent {
     private socketService: SocketIoService,
     private router: Router
   ) {
-    if (this.authService.checkLocalStorageToken()) {
-      this.getUser()
-    }
+    // if (this.authService.checkLocalStorageToken()) {
+    //   this.getUser()
+    // }
   }
 
   signIn(email: string, password: string) {

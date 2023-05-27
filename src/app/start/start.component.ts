@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UserService } from '../user.service';
 import { SocketIoService } from '../socket-io.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-start',
@@ -20,7 +21,8 @@ export class StartComponent {
   constructor(
     private responsive: BreakpointObserver,
     private userService: UserService,
-    private socketService: SocketIoService
+    private socketService: SocketIoService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -79,8 +81,13 @@ export class StartComponent {
   }
 
   getUserAndJoin() {
-    const user = this.userService.user
-    if (user)
+    if (this.userService.user) {
       this.socketService.join()
+    } else if (this.authService.checkLocalStorageToken()) {
+      this.userService.getUser()
+        .subscribe(() => {
+          this.socketService.join()
+        })
+    }
   }
 }

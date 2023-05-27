@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   canActivate(): boolean {
-    return this.token !== ''
+    return this.token !== '' || this.checkLocalStorageToken()
   }
 
   checkLocalStorageToken() {
