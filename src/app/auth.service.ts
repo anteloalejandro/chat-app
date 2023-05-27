@@ -15,9 +15,7 @@ export class AuthService {
   private readonly DAYS = 1000 * 60 * 60 * 24
   private readonly EXP_TIME = 7 * this.DAYS
   public token: string = ''
-  constructor(private http: HttpClient) {
-    this.checkLocalStorageToken()
-  }
+  constructor(private http: HttpClient) { }
 
   signIn(email: string, password: string): Observable<AuthToken> {
     const url = this.authUrl+'/sign-in'
