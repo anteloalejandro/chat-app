@@ -11,7 +11,6 @@ import { SocketIoService } from '../socket-io.service';
 export class SendBarComponent {
 
   @Input() conversation?: string
-  @Output() onMessageRecieved = new EventEmitter<Message>()
 
   constructor(
     private messageService: MessageService,
@@ -19,10 +18,6 @@ export class SendBarComponent {
   ) {}
 
   ngOnInit() {
-    this.socketService.onRefresh()
-      .subscribe(message => {
-        this.onMessageRecieved.emit(message)
-      })
   }
 
   sendMessage(content: string) {

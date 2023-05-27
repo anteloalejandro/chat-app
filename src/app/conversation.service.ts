@@ -22,6 +22,12 @@ export class ConversationService {
     return this.http.get<Conversation[]>(url, httpOptions)
   }
 
+  getUnreadConversations(): Observable<Conversation[]> {
+    const url = this.conversationUrl + '/unread'
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+    return this.http.get<Conversation[]>(url, httpOptions)
+  }
+
   new(recipient: string): Observable<Conversation> {
     const url = this.conversationUrl
     const httpOptions = new HttpOptions('token='+this.authService.token)

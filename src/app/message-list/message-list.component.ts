@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { SocketIoService } from '../socket-io.service';
@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
 export class MessageListComponent implements AfterContentChecked {
   public messages: Message[] = []
   @Input() conversation?: string
+  @Output() onNewMessage = new EventEmitter<string>()
   private lastDate?: Date
 
   constructor(
@@ -24,6 +25,11 @@ export class MessageListComponent implements AfterContentChecked {
   ) {}
 
   ngOnInit() {
+    this.socketService.onRefresh()
+      .subscribe(message => {
+        console.log('message recieved')
+        this.addMessage(message)
+      })
     this.socketService.onRead()
       .subscribe(message => {
         for(const msg of this.messages) {
@@ -32,11 +38,6 @@ export class MessageListComponent implements AfterContentChecked {
             return
           }
         }
-        console.log({
-          status: 'failed',
-          author: message.author,
-          user: this.user()?._id
-        })
       })
   }
 
@@ -72,11 +73,18 @@ export class MessageListComponent implements AfterContentChecked {
   }
 
   addMessage(message: Message) {
-    if (message.conversation != this.conversation)
-      return
-    this.messages.push(message)
-    this.scrollToBottom(true)
-    this.socketService.read(message)
+    if (
+      (this.conversation != undefined || this.conversation == '')
+      && message.conversation == this.conversation
+    ) {
+      this.messages.push(message)
+      this.scrollToBottom(true)
+      this.socketService.read(message)
+    } else {
+      this.onNewMessage.emit(message.conversation)
+      console.log('recieved message, emiting')
+    }
+
   }
 
   scrollToBottom(smooth = false) {
@@ -109,7 +117,6 @@ export class MessageListComponent implements AfterContentChecked {
     const date = new Date(message.date)
     if (!this.lastDate) {
       this.lastDate = date
-      console.log('no previous date, returning true');
 
       return true
     }

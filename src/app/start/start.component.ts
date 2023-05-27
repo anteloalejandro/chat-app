@@ -10,6 +10,7 @@ import { SocketIoService } from '../socket-io.service';
 })
 export class StartComponent {
   public conversation?: string
+  public unreadConversations: string[] = []
   public mobileLayout = false
   public pcLayout = false
   public layout: 'pc' | 'mobile' | 'default' = 'default'
@@ -43,7 +44,7 @@ export class StartComponent {
   }
 
   ngOnDestroy() {
-    this.socketService
+    this.socketService.leaveRoom('a')
   }
 
   setConversation(id: string) {
@@ -52,7 +53,20 @@ export class StartComponent {
     if (this.mobileLayout)
       this.mobileView = 'messages'
 
+    this.removeUnread(id)
     console.log(this.mobileView)
+  }
+
+  removeUnread(conversation: string) {
+    const idx = this.unreadConversations.findIndex(c => c == conversation)
+    if (idx >= 0) {
+      this.unreadConversations.splice(idx, 1)
+    }
+  }
+
+  setUnread(conversation: string) {
+    this.unreadConversations.push(conversation)
+    this.unreadConversations = [...new Set(this.unreadConversations)]
   }
 
   switchToConversations() {

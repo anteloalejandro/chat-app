@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversation } from '../conversation';
 import { ConversationService } from '../conversation.service';
 import { User } from '../user';
@@ -11,6 +11,8 @@ import { UserService } from '../user.service';
 })
 export class ConversationListComponent {
   @Input() selected?: string
+  @Input() unreadConversations: string[] = []
+  @Output() initiallyUnread = new EventEmitter<string[]>()
   public showUserSearch = false
   public conversations: Conversation[] = []
   public checkedConversations = false
@@ -20,11 +22,17 @@ export class ConversationListComponent {
 
   constructor(
     private conversationService: ConversationService,
-    private userService: UserService
+    private userService: UserService,
+
+    private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.getConversations()
+  }
+
+  ngAfterContentChecked() : void {
+    this.changeDetector.detectChanges();
   }
 
   getConversations() {
@@ -37,6 +45,11 @@ export class ConversationListComponent {
             this.contacts = contacts
             this.checkedConversations = true
           })
+      })
+
+    this.conversationService.getUnreadConversations()
+      .subscribe(conversations => {
+        this.initiallyUnread.emit(conversations.map(c => c._id))
       })
   }
 
@@ -61,5 +74,12 @@ export class ConversationListComponent {
     this.userService.contact = contact
     console.log('sending conversation')
     this.onSelectConversation.emit(id)
+  }
+
+  isUnread(id: string) {
+    if (this.unreadConversations.find(c => c == id))
+      return true
+
+    return false
   }
 }

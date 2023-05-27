@@ -1,11 +1,13 @@
 <div class="container" [ngClass]="'container-'+layout">
   <aside *ngIf="!mobileLayout || mobileView == 'conversations'">
-    <app-conversation-list [selected]="conversation"
-      (onSelectConversation)="setConversation($event)"/>
+    <app-conversation-list [selected]="conversation" [unreadConversations]="unreadConversations"
+      (onSelectConversation)="setConversation($event)"
+      (initiallyUnread)="unreadConversations = $event"/>
   </aside>
   <div *ngIf="!mobileLayout || mobileView == 'messages'">
     <button *ngIf="mobileLayout" (click)="switchToConversations()" id="back-btn">&ltri;</button>
-    <app-message-list [conversation]="conversation"/>
+    <app-message-list [conversation]="conversation"
+      (onNewMessage)="setUnread($event)"/>
   </div>
   <div *ngIf="pcLayout && getContact() as contact">
     <app-contact-data [user]="contact"/>

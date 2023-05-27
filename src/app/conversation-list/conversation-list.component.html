@@ -12,7 +12,8 @@
   <ul>
     <li *ngFor="let conversation of conversations; let i = index">
       <a class="link" (click)="selectConversation(conversation._id)"
-        [ngClass]="selected == conversation._id ? 'selected' : ''">
+        [ngClass]="selected == conversation._id ? 'selected' : ''"
+        [ngClass]="isUnread(conversation._id)? 'unread' : ''">
         {{conversationContactMap.get(conversation._id)}}
       </a>
     </li>
