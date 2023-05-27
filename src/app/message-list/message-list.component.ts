@@ -1,6 +1,7 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
+import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -17,9 +18,27 @@ export class MessageListComponent implements AfterContentChecked {
   constructor(
     private messageService: MessageService,
     private userService: UserService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private socketService: SocketIoService
 
   ) {}
+
+  ngOnInit() {
+    this.socketService.onRead()
+      .subscribe(message => {
+        for(const msg of this.messages) {
+          if (msg._id == message._id) {
+            msg.status = 'recieved'
+            return
+          }
+        }
+        console.log({
+          status: 'failed',
+          author: message.author,
+          user: this.user()?._id
+        })
+      })
+  }
 
   user() {
     return this.userService.user
@@ -42,6 +61,12 @@ export class MessageListComponent implements AfterContentChecked {
     this.messageService.getMessagesFromConversation(conversationId)
       .subscribe(messages => {
         this.messages = messages
+
+        this.messages.forEach(m => {
+          if (m.status != 'deleted') {
+            this.socketService.read(m)
+          }
+        })
         this.scrollToBottom()
       })
   }
@@ -51,6 +76,7 @@ export class MessageListComponent implements AfterContentChecked {
       return
     this.messages.push(message)
     this.scrollToBottom(true)
+    this.socketService.read(message)
   }
 
   scrollToBottom(smooth = false) {

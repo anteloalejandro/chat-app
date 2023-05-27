@@ -67,6 +67,6 @@ export class StartComponent {
   getUserAndJoin() {
     const user = this.userService.user
     if (user)
-      this.socketService.joinRoom(user._id)
+      this.socketService.join()
   }
 }

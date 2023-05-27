@@ -20,9 +20,9 @@ export class SendBarComponent {
 
   ngOnInit() {
     this.socketService.onRefresh()
-    .subscribe(message => {
-      this.onMessageRecieved.emit(message)
-    })
+      .subscribe(message => {
+        this.onMessageRecieved.emit(message)
+      })
   }
 
   sendMessage(content: string) {

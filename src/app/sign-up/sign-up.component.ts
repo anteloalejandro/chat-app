@@ -35,7 +35,7 @@ export class SignUpComponent {
           .subscribe(() => {
             this.userService.getUser()
               .subscribe(user => {
-                this.socketService.joinRoom(user._id)
+                this.socketService.join()
                 this.router.navigate(['/'])
               })
           })
