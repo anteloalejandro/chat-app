@@ -11,6 +11,7 @@ import { HttpOptions } from './http-options';
 })
 export class ConversationService {
   private conversationUrl = env.baseUrl+'/api/conversations'
+  public conversation?: string
   constructor(
     private http: HttpClient,
     private authService: AuthService

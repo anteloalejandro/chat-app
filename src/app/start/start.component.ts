@@ -3,6 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { UserService } from '../user.service';
 import { SocketIoService } from '../socket-io.service';
 import { AuthService } from '../auth.service';
+import { ConversationService } from '../conversation.service';
 
 @Component({
   selector: 'app-start',
@@ -22,10 +23,16 @@ export class StartComponent {
     private responsive: BreakpointObserver,
     private userService: UserService,
     private socketService: SocketIoService,
-    private authService: AuthService
+    private authService: AuthService,
+    private conversationService: ConversationService
   ) {}
 
   ngOnInit() {
+    if (this.conversationService.conversation) {
+      this.conversation = this.conversationService.conversation
+      this.conversationService.conversation = undefined
+    }
+
     this.getUserAndJoin()
     const mobile = '(max-width: 600px)'
     const pc = '(min-width: 1200px)'
@@ -52,6 +59,7 @@ export class StartComponent {
   }
 
   ngOnDestroy() {
+    this.conversationService.conversation = this.conversation
     this.socketService.leaveRoom('a')
   }
 
