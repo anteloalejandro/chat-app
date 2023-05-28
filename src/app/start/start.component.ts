@@ -43,6 +43,12 @@ export class StartComponent {
         else
           this.layout = 'default'
       })
+
+    this.socketService.onRefresh()
+      .subscribe(message => {
+        if (message.conversation != this.conversation)
+          this.setUnread(message.conversation)
+      })
   }
 
   ngOnDestroy() {
@@ -72,8 +78,11 @@ export class StartComponent {
   }
 
   switchToConversations() {
-    this.mobileView = 'conversations'
+    this.conversation = undefined
     this.userService.contact = undefined
+    this.mobileView = 'conversations'
+
+    console.log(this.conversation)
   }
 
   getContact() {

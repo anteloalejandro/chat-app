@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { SocketIoService } from '../socket-io.service';
@@ -13,7 +13,6 @@ import { UserService } from '../user.service';
 export class MessageListComponent implements AfterContentChecked {
   public messages: Message[] = []
   @Input() conversation?: string
-  @Output() onNewMessage = new EventEmitter<string>()
   private lastDate?: Date
 
   constructor(
@@ -27,8 +26,8 @@ export class MessageListComponent implements AfterContentChecked {
   ngOnInit() {
     this.socketService.onRefresh()
       .subscribe(message => {
-        console.log('message recieved')
-        this.addMessage(message)
+        if (this.conversation)
+          this.addMessage(message)
       })
     this.socketService.onRead()
       .subscribe(message => {
@@ -39,6 +38,10 @@ export class MessageListComponent implements AfterContentChecked {
           }
         }
       })
+  }
+
+  ngOnDestroy() {
+    this.conversation = undefined
   }
 
   user() {
@@ -52,14 +55,14 @@ export class MessageListComponent implements AfterContentChecked {
   }
 
   ngOnChanges() {
-    if (this.conversation) {
-      this.getMessages(this.conversation)
-    }
+    this.getMessages()
   }
 
-  getMessages(conversationId: string) {
-    this.conversation = conversationId
-    this.messageService.getMessagesFromConversation(conversationId)
+  getMessages() {
+    if (!this.conversation)
+      return
+
+    this.messageService.getMessagesFromConversation(this.conversation)
       .subscribe(messages => {
         this.messages = messages
 
@@ -80,11 +83,7 @@ export class MessageListComponent implements AfterContentChecked {
       this.messages.push(message)
       this.scrollToBottom(true)
       this.socketService.read(message)
-    } else {
-      this.onNewMessage.emit(message.conversation)
-      console.log('recieved message, emiting')
     }
-
   }
 
   scrollToBottom(smooth = false) {
