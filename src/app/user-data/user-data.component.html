@@ -1,7 +1,5 @@
 <form *ngIf="user" (submit)="$event.preventDefault(); updateUser()">
-  <div id="pfp">
-    <img src="{{user.profilePicture}}" alt="{{user.username[0]}}">
-  </div>
+  <app-pfp [user]="user"/>
   <small>
     <input [(ngModel)]="user.profilePicture" #profilePicture name="profilePicture"
       placeholder="profile picture url" [disabled]="!edit">

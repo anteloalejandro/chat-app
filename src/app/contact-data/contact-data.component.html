@@ -1,7 +1,5 @@
   <div *ngIf="user && !user.error">
-    <div id="pfp">
-      <img src="/assets/inspiration-geometry.png" alt="">
-    </div>
+    <app-pfp [user]="user"/>
     <h1>{{user.username}}</h1>
     <h2>{{user.email}}</h2>
     <div *ngIf="showNewConvBtn">

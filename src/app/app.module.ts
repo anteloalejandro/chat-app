@@ -18,6 +18,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MessageComponent } from './message/message.component';
 import { ContactDataComponent } from './contact-data/contact-data.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PfpComponent } from './pfp/pfp.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SignUpComponent,
     MessageComponent,
     ContactDataComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PfpComponent
   ],
   imports: [
     BrowserModule,
