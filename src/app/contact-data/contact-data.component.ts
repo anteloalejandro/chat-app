@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConversationService } from '../conversation.service';
+import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -18,7 +19,8 @@ export class ContactDataComponent {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private conversationService: ConversationService
+    private conversationService: ConversationService,
+    private socketService: SocketIoService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,10 @@ export class ContactDataComponent {
       this.user = this.userService.contact
     } else {
       this.userService.getUser(id)
-        .subscribe(user => this.user = user)
+        .subscribe(user => {
+          this.user = user
+          this.userService.contact = user
+        })
     }
     this.userService.getContacts()
       .subscribe(contacts => {
@@ -51,13 +56,16 @@ export class ContactDataComponent {
 
     this.conversationService.new(this.user._id)
       .subscribe(conversation => {
-        if (conversation.error)
+        if (conversation.error) {
           console.error(
             'error: '+conversation.error,
             'current user:'+this.userService.user?.username
           )
-        else
+        }
+        else {
+          this.socketService.newConversation(this.userService.contact!._id)
           this.goBack()
+        }
       })
     //this.goBack()
   }

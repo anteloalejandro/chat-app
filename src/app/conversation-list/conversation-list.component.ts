@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversation } from '../conversation';
 import { ConversationService } from '../conversation.service';
+import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -23,12 +24,18 @@ export class ConversationListComponent {
   constructor(
     private conversationService: ConversationService,
     private userService: UserService,
-
+    private socketService: SocketIoService,
     private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.getConversations()
+
+    this.socketService.onConversation()
+      .subscribe(conversation => {
+        console.log('updating conversations')
+        this.getConversations()
+      })
   }
 
   ngAfterContentChecked() : void {

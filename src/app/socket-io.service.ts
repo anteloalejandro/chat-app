@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { io } from 'socket.io-client'
 import { environment as env } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { Conversation } from './conversation';
 import { Message } from './message';
 import { UserService } from './user.service';
 
@@ -39,6 +40,10 @@ export class SocketIoService {
       this.socket.emit('read', message)
   }
 
+  newConversation(recipientId: string) {
+    this.socket.emit('new-conversation', recipientId)
+  }
+
   onRefresh(): Observable<Message> {
     return new Observable<Message>(observer => {
       this.socket.on('refresh-messages', (data: Message) => {
@@ -51,6 +56,14 @@ export class SocketIoService {
     return new Observable<Message>(observer => {
       this.socket.on('refresh-read', (data: Message) => {
         return observer.next(data)
+      })
+    })
+  }
+
+  onConversation() {
+    return new Observable(observer => {
+      this.socket.on('refresh-read', () => {
+        return observer.next()
       })
     })
   }

@@ -3,6 +3,9 @@
     <a class="username" *ngIf="getContact() && isOnStart()" routerLink="/contact-data/{{contact?._id}}">
       {{username()}}
     </a>
+    <!-- <a class="delete" *ngIf="!getContact() && isOnStart()" (click)="deleteConv()"> -->
+    <!--   delete -->
+    <!-- </a> -->
   </div>
   <div>
     <a *ngIf="getUser() && isOnStart()"

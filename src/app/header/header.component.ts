@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConversationService } from '../conversation.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -13,6 +14,7 @@ export class HeaderComponent {
   public user = this.userService.user
   constructor(
     private userService: UserService,
+    private conversationService: ConversationService,
     private router: Router
   ) {}
 
@@ -40,5 +42,17 @@ export class HeaderComponent {
       username = username.slice(0, maxChars - 3) + '...'
 
     return username
+  }
+
+  deleteConv() {
+    const contConvs = this.contact?.conversations
+    const userConvs = this.user?.conversations
+
+    const conversationId = contConvs!.find(c => {
+      userConvs?.includes(c)
+    })
+
+    this.conversationService.delete(conversationId!)
+      .subscribe()
   }
 }
