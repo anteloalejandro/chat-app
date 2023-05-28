@@ -23,6 +23,12 @@ a, .link {
   }
 }
 
+a, .link, button, .button {
+  &:hover, &:active {
+    cursor: pointer;
+  }
+}
+
 body {
   height: var(--body-height);
   margin: auto;

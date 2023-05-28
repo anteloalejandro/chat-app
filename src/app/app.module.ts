@@ -19,6 +19,7 @@ import { MessageComponent } from './message/message.component';
 import { ContactDataComponent } from './contact-data/contact-data.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PfpComponent } from './pfp/pfp.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PfpComponent } from './pfp/pfp.component';
     MessageComponent,
     ContactDataComponent,
     ChangePasswordComponent,
-    PfpComponent
+    PfpComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,

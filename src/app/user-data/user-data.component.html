@@ -2,7 +2,7 @@
   <app-pfp [user]="user"/>
   <small>
     <input [(ngModel)]="user.profilePicture" #profilePicture name="profilePicture"
-      placeholder="profile picture url" [disabled]="!edit">
+      placeholder="profile picture url" [disabled]="!edit" pattern="/\.(png|jpe?g|webp|gif|bmp)$/">
   </small>
   <h1>
     <input [(ngModel)]="user.username" #username name="username"
@@ -12,11 +12,11 @@
     <input [(ngModel)]="user.email" #email name="email"
       placeholder="email" [disabled]="!edit">
   </h2>
+
   <div class="btn-group" *ngIf="edit">
       <button type="submit">Save</button>
       <button (click)="cancelEdit()">Cancel</button>
       <button (click)="changePasswd()">Change Password</button>
-
   </div>
 
   <div class="btn-group" *ngIf="!edit">
