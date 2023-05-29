@@ -81,6 +81,7 @@ export class ConversationListComponent {
         c.conversations.includes(id))[0]
     console.log(contact)
     this.userService.contact = contact
+    this.conversationService.conversation = id
     console.log('sending conversation')
     this.onSelectConversation.emit(id)
   }

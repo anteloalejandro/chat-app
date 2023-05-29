@@ -3,9 +3,10 @@
     <a class="username" *ngIf="isOnStart() && getContact() " routerLink="/contact-data/{{contact?._id}}">
       {{username()}}
     </a>
-    <!-- <a class="delete" *ngIf="!getContact() && isOnStart()" (click)="deleteConv()"> -->
-    <!--   delete -->
-    <!-- </a> -->
+    <a class="delete" *ngIf="!getContact() && isOnStart() && getConversation()"
+      (click)="deleteConv()">
+      <fa-icon [icon]="faTrash"/>
+    </a>
   </div>
   <div>
     <a *ngIf="getUser() && isOnStart()"

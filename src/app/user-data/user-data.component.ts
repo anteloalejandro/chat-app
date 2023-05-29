@@ -35,7 +35,10 @@ export class UserDataComponent {
 
   deleteAccount() {
     if (confirm('Are you sure you want to delete your account?'))
-      this.userService.deleteUser().subscribe()
+      this.userService.deleteUser()
+      .subscribe( () => {
+        this.router.navigate(['/'])
+      })
   }
 
   goBack() {

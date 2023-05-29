@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConversationService } from '../conversation.service';
 import { UserService } from '../user.service';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
   faUser = faUser;
+  faTrash = faTrash;
   public contact = this.userService.contact
   public user = this.userService.user
   constructor(
@@ -33,6 +34,10 @@ export class HeaderComponent {
     return this.userService.user
   }
 
+  getConversation() {
+    return this.conversationService.conversation
+  }
+
   username() {
     const maxChars = 8
     let username = this.contact?.username
@@ -46,6 +51,9 @@ export class HeaderComponent {
   }
 
   deleteConv() {
+    if (!confirm('Do you want to delete this conversation?'))
+      return
+
     const contConvs = this.contact?.conversations
     const userConvs = this.user?.conversations
 
@@ -54,6 +62,8 @@ export class HeaderComponent {
     })
 
     this.conversationService.delete(conversationId!)
-      .subscribe()
+      .subscribe(() => {
+        this.conversationService.conversation = undefined
+      })
   }
 }
