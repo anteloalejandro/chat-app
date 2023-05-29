@@ -83,6 +83,7 @@ export class MessageListComponent implements AfterContentChecked {
       this.messages.push(message)
       this.scrollToBottom(true)
       this.socketService.read(message)
+      this.messageService.getMessage(message._id).subscribe()
     }
   }
 

@@ -17,6 +17,13 @@ export class MessageService {
     private authService: AuthService
   ) { }
 
+  getMessage(id: string): Observable<Message> {
+    const url = this.messsageUrl + '/' + id
+    const httpOptions = new HttpOptions('token='+this.authService.token)
+
+    return this.http.get<Message>(url, httpOptions)
+  }
+
   getMessagesFromConversation(id: string): Observable<Message[]> {
     const url = this.messsageUrl+'/conversation/'+id
     const httpOptions = new HttpOptions('token='+this.authService.token)
