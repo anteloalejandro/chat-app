@@ -1,4 +1,4 @@
 <div id="pfp" *ngIf="user">
-  <img src="{{pfpUrl()}}" (error)="showLetter = true" *ngIf="showLetter">
-  <span *ngIf="!showLetter">{{user.username[0]}}</span>
+  <img src="{{pfpUrl()}}" (error)="showLetter = true" *ngIf="!showLetter">
+  <span *ngIf="showLetter">{{user.username[0]}}</span>
 </div>

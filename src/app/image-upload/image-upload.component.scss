@@ -1,24 +1,19 @@
 form {
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  border-radius: .5rem;
-  input, button {
-    margin-block: .5rem;
-    display: block;
-    background-color: #363636;
-    color: inherit;
-    border: none;
-    font-family: sans-serif;
-    font-size: 1rem;
-    &:is(:hover,:active) {
-      background-color: #444;
-      border-color: #ccc;
-      outline-color: #ccc;
-    }
+  height: 100%;
+  display: block;
+  background-color: #363636;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  transition: background-color 200ms ease;
+  &:is(:hover,:active) {
+    background-color: royalblue;
+    outline-color: #ccc;
   }
-  button {
-    padding-left: .5rem;
-    font-weight: bold;
+  .new-input {
+    display: block;
+    padding: .5rem 1rem;
+    height: 100%;
+    width: 100%;
   }
 }

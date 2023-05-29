@@ -1,8 +1,9 @@
 <form *ngIf="user" (submit)="$event.preventDefault(); updateUser()">
   <app-pfp [user]="user"/>
-  <small>
+  <small class="profile-url">
     <input [(ngModel)]="user.profilePicture" #profilePicture name="profilePicture"
       placeholder="profile picture url" [disabled]="!edit" pattern="/\.(png|jpe?g|webp|gif|bmp)$/">
+    <app-image-upload *ngIf="edit" (onSubmit)="user.profilePicture = $event"/>
   </small>
   <h1>
     <input [(ngModel)]="user.username" #username name="username"

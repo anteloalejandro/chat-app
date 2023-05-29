@@ -1,5 +1,11 @@
-<form action="{{getUrl()}}" method="POST" enctype="multipart/form-data"
-  >
-  <input type="file" #input id="input" name="indput" accept="image/**">
+<!-- <form action="{{getUrl()}}" method="POST" enctype="multipart/form-data">
+  <input type="file" #input id="image" name="image" accept="image/**">
   <button type="submit">Save</button>
+</form> -->
+<form [formGroup]="uploadForm" (ngSubmit)="submit()">
+    <label for="image">
+      <input style="display: none" type="file" #image id="image" name="image" accept="image/**"
+        (change)="fileSelect($event)">
+      <span class="new-input"><fa-icon [icon]="faArrowUpFromBracket"/></span>
+    </label>
 </form>

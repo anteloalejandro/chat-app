@@ -1,9 +1,9 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { environment as env} from 'src/environments/environment';
 import { AuthService } from '../auth.service';
-import { HttpOptions } from '../http-options';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -11,22 +11,43 @@ import { HttpOptions } from '../http-options';
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent {
-
+  faArrowUpFromBracket = faArrowUpFromBracket
+  url = env.baseUrl + '/api/upload/image?token='+this.authService.token
+  uploadForm!: FormGroup
+  select = false
   @Output() onSubmit = new EventEmitter<string>()
+  @ViewChild('image') image!: HTMLInputElement
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
   ) { }
 
-  getUrl() {
-    return env.baseUrl + '/api/upload/image?token='+this.authService.token
+  ngOnInit() {
+    this.uploadForm = this.formBuilder.group({
+      image: ''
+    })
   }
 
-  submit(input: HTMLInputElement) {
-    console.log(input.value)
-    this.onSubmit.emit(input.value)
-    input.value = ''
+  fileSelect(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]
+      this.uploadForm.get('image')!.setValue(file)
+      this.submit()
+    }
+  }
+
+  submit() {
+    const formData = new FormData()
+    formData.append('image', this.uploadForm.get('image')!.value)
+
+    this.http.post<any>(this.url, formData)
+      .subscribe(response => {
+        console.log(response)
+        const filename = response.filename
+        this.onSubmit.emit(filename)
+      })
   }
 
 }
