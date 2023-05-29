@@ -88,6 +88,7 @@ export class StartComponent {
   switchToConversations() {
     this.conversation = undefined
     this.userService.contact = undefined
+    this.conversationService.conversation = undefined
     this.mobileView = 'conversations'
 
     console.log(this.conversation)
