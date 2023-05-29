@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { SocketIoService } from '../socket-io.service';
 import { AuthService } from '../auth.service';
 import { ConversationService } from '../conversation.service';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-start',
@@ -11,6 +12,7 @@ import { ConversationService } from '../conversation.service';
   styleUrls: ['./start.component.scss']
 })
 export class StartComponent {
+  faShare = faShare
   public conversation?: string
   public unreadConversations: string[] = []
   public mobileLayout = false

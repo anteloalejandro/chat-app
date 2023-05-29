@@ -5,7 +5,9 @@
       (initiallyUnread)="unreadConversations = $event"/>
   </aside>
   <div *ngIf="!mobileLayout || mobileView == 'messages'">
-    <button *ngIf="mobileLayout" (click)="switchToConversations()" id="back-btn">&ltri;</button>
+    <button *ngIf="mobileLayout" (click)="switchToConversations()" id="back-btn">
+      <fa-icon [icon]="faShare" [rotate]="180"/>
+    </button>
     <app-message-list [conversation]="conversation"/>
   </div>
   <div *ngIf="pcLayout && getContact() as contact" class="contact">
