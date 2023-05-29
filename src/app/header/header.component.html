@@ -1,6 +1,6 @@
 <header>
   <div>
-    <a class="username" *ngIf="getContact() && isOnStart()" routerLink="/contact-data/{{contact?._id}}">
+    <a class="username" *ngIf="isOnStart() && getContact() " routerLink="/contact-data/{{contact?._id}}">
       {{username()}}
     </a>
     <!-- <a class="delete" *ngIf="!getContact() && isOnStart()" (click)="deleteConv()"> -->

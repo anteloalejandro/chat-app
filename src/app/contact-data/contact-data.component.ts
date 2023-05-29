@@ -26,6 +26,7 @@ export class ContactDataComponent {
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id')
     this.getData(idParam ? idParam : undefined)
+    this.socketService.join()
   }
 
   getData(id?: string) {
@@ -64,6 +65,8 @@ export class ContactDataComponent {
         }
         else {
           this.socketService.newConversation(this.userService.contact!._id)
+          // this.conversationService.conversation = conversation._id
+          // this.userService.contact = this.user
           this.goBack()
         }
       })
@@ -74,9 +77,16 @@ export class ContactDataComponent {
     const userConvs = this.userService.user!.conversations
     const contConvs = this.userService.contact!.conversations
 
-    const intersection = userConvs!.filter(c => contConvs!.includes(c))
-    this.conversationService.delete(intersection[0])
+    const intersection = userConvs!.find(c => contConvs!.includes(c))
+
+    if (!intersection) {
+      console.log('no intersection')
+      return
+    }
+    this.conversationService.delete(intersection!)
       .subscribe(() => {
+        this.userService.contact = undefined
+        this.conversationService.conversation = undefined
         this.router.navigate(['/'])
       })
   }

@@ -41,7 +41,7 @@ export class SocketIoService {
   }
 
   newConversation(recipientId: string) {
-    this.socket.emit('new-conversation', recipientId)
+    this.socket.emit('conversation', recipientId)
   }
 
   onRefresh(): Observable<Message> {
@@ -61,9 +61,9 @@ export class SocketIoService {
   }
 
   onConversation() {
-    return new Observable(observer => {
-      this.socket.on('refresh-read', () => {
-        return observer.next()
+    return new Observable<any>(observer => {
+      this.socket.on('refresh-conversations', (data: any) => {
+        return observer.next(data)
       })
     })
   }
