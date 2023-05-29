@@ -15,9 +15,12 @@
     padding: .5rem 1rem;
     color: white;
     border: none;
+    &:is(:active, :hover) {
+      background-color: #444;
+    }
     &#delete {
       background-color: lightcoral;
-      &:hover {
+      &:is(:active, :hover) {
         background-color: coral;
       }
     }
