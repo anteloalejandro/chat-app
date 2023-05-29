@@ -10,6 +10,10 @@ export class PfpComponent {
   @Input() user?: User
   public showLetter = false
 
+  ngOnChanges() {
+    this.showLetter = false
+  }
+
   pfpUrl() {
     const profilePicture = this.user!.profilePicture!
     if (/^https?:\/\//.test(profilePicture))
