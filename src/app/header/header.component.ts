@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ConversationService } from '../conversation.service';
 import { UserService } from '../user.service';
-import { faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTrash, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +13,7 @@ import { faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent {
   faUser = faUser;
   faTrash = faTrash;
+  faRightToBracket = faRightToBracket;
   public contact = this.userService.contact
   public user = this.userService.user
   constructor(

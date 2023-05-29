@@ -35,6 +35,9 @@
 
 .info {
   align-self: self-end;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   height: fit-content;
   bottom: 0; left: 0;
   width: 100%;
@@ -42,6 +45,10 @@
   background-color: black;
   color: white;
   @media (max-width: 600px) {
-    font-size: .8rem;
+    font-size: .9rem;
+    padding: 1.5rem;
+  }
+  .info-icon {
+    font-size: 3em;
   }
 }

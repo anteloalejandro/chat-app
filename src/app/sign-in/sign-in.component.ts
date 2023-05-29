@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SocketIoService } from '../socket-io.service';
 import { UserService } from '../user.service';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  faCircleInfo = faCircleInfo
   error?: string
   constructor(
     private authService: AuthService,
