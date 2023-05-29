@@ -37,6 +37,8 @@ export class UserDataComponent {
     if (confirm('Are you sure you want to delete your account?'))
       this.userService.deleteUser()
       .subscribe( () => {
+        this.authService.token = ''
+        this.userService.user = undefined
         this.router.navigate(['/'])
       })
   }

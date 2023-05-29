@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { ConversationService } from '../conversation.service';
 import { UserService } from '../user.service';
 import { faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +18,8 @@ export class HeaderComponent {
   constructor(
     private userService: UserService,
     private conversationService: ConversationService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   isOnStart() {
@@ -54,16 +56,10 @@ export class HeaderComponent {
     if (!confirm('Do you want to delete this conversation?'))
       return
 
-    const contConvs = this.contact?.conversations
-    const userConvs = this.user?.conversations
-
-    const conversationId = contConvs!.find(c => {
-      userConvs?.includes(c)
-    })
-
-    this.conversationService.delete(conversationId!)
+    this.conversationService.delete(this.conversationService.conversation!)
       .subscribe(() => {
         this.conversationService.conversation = undefined
+        window.location.reload()
       })
   }
 }
