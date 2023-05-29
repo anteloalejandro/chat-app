@@ -1,6 +1,14 @@
-# App
+# Overview
+
+This is an implementation of a frontend utilizing a public REST API I made that you can find [here](https://github.com/anteloalejandro/chat-server).
+
+# Instructions
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+
+## Install dependencias
+
+Run `npm install` to install all the dependencies. You may need to run `ng add @angular/cdk` and `ng add @fortawesome/angular-fontawesome` also.
 
 ## Development server
 
