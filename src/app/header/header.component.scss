@@ -12,11 +12,15 @@ header {
     padding: .5rem 1rem;
     color: white;
 
+    &:is(:hover, :active) {
+      background-color: #444;
+      text-decoration: none;
+    }
+
     &.delete {
       background-color: lightcoral;
       &:is(:hover, :active) {
-
-      background-color: coral;
+        background-color: coral;
       }
     }
   }

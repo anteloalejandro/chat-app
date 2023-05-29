@@ -10,7 +10,7 @@
   <div>
     <a *ngIf="getUser() && isOnStart()"
       routerLink="/user-data">
-      About me
+      <fa-icon [icon]="faUser"/>
     </a>
     <a routerLink="/sign-in">Sign in</a>
   </div>

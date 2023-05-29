@@ -6,7 +6,7 @@ form {
   div {
     width: 90%;
     display: grid;
-    grid-template-columns: 1fr 10ch;
+    grid-template-columns: 1fr 5ch;
     border-radius: .5rem;
     overflow: hidden;
     input, button {
@@ -19,6 +19,12 @@ form {
       font-size: 0.9rem;
       &:is(:hover,:active) {
         background-color: #444;
+      }
+    }
+    button {
+      background-color: #444;
+      &:is(:hover, :active) {
+        background-color: royalblue;
       }
     }
   }

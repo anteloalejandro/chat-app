@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConversationService } from '../conversation.service';
-import { User } from '../user';
 import { UserService } from '../user.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  faUser = faUser;
   public contact = this.userService.contact
   public user = this.userService.user
   constructor(

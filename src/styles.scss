@@ -29,6 +29,11 @@ a, .link, button, .button {
   }
 }
 
+button, input, p, a, div, span {
+  transition: none 200ms ease;
+  transition-property: background-color, color, border-color;
+}
+
 body {
   height: var(--body-height);
   margin: auto;

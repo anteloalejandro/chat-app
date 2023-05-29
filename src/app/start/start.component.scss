@@ -20,6 +20,12 @@
     grid-auto-columns: 40ch;
   }
 
+  .contact {
+    background-color: #282828;
+    display: grid;
+    place-items: center;
+  }
+
 }
 
 #back-btn {

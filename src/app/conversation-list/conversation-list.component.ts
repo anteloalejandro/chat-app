@@ -4,6 +4,7 @@ import { ConversationService } from '../conversation.service';
 import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-conversation-list',
@@ -11,6 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./conversation-list.component.scss']
 })
 export class ConversationListComponent {
+  faMagnifyingGlassPlus = faMagnifyingGlassPlus
   @Input() selected?: string
   @Input() unreadConversations: string[] = []
   @Output() initiallyUnread = new EventEmitter<string[]>()

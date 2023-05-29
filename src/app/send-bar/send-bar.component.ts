@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
 import { SocketIoService } from '../socket-io.service';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-send-bar',
@@ -9,7 +10,7 @@ import { SocketIoService } from '../socket-io.service';
   styleUrls: ['./send-bar.component.scss']
 })
 export class SendBarComponent {
-
+  faPaperPlane = faPaperPlane
   @Input() conversation?: string
 
   constructor(

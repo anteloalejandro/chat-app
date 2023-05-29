@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service';
+import { faCheck, faCheckDouble, faCaretDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-message',
@@ -8,6 +9,10 @@ import { MessageService } from '../message.service';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent {
+  faCheck = faCheck
+  faCheckDouble = faCheckDouble
+  faCaretDown = faCaretDown
+  faXmark = faXmark
   @Input() message!: Message
   @Input() isSent!: boolean
   public showDropdown = false

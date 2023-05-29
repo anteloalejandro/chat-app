@@ -1,6 +1,8 @@
 <div id="conv-header">
   <h4>Conversations</h4>
-  <button (click)="showUserSearch = !showUserSearch">+</button>
+  <button (click)="showUserSearch = !showUserSearch" class="search-toggle">
+    <fa-icon [icon]="faMagnifyingGlassPlus"/>
+  </button>
 </div>
 <div *ngIf="showUserSearch">
   <app-user-search/>

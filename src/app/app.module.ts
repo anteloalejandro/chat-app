@@ -20,6 +20,7 @@ import { ContactDataComponent } from './contact-data/contact-data.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PfpComponent } from './pfp/pfp.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

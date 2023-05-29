@@ -2,7 +2,7 @@
   <span *ngIf="message.status == 'deleted'"><em>[deleted]</em></span>
   <span *ngIf="message.status != 'deleted'">{{message.content}}</span>
   <div class="msg-dropdown-container" *ngIf="isSent && message.status != 'deleted'">
-    <span class="msg-dropdown-toggle" (click)="toggleDrodown()">V</span>
+    <span class="msg-dropdown-toggle" (click)="toggleDrodown()"><fa-icon [icon]="faCaretDown"/></span>
     <div class="msg-dropdown" *ngIf="showDropdown">
       <a class="delete" (click)="deleteMessage()">Delete</a>
     </div>
@@ -13,9 +13,9 @@
     </div>
     <div class="status status-{{message.status}}"
       [ngSwitch]="message.status" *ngIf="isSent">
-      <span *ngSwitchCase="'sent'">🗸</span>
-      <span *ngSwitchCase="'recieved'">🗸🗸</span>
-      <span *ngSwitchCase="'deleted'">X</span>
+      <span *ngSwitchCase="'sent'"><fa-icon [icon]="faCheck"/></span>
+      <span *ngSwitchCase="'recieved'"><fa-icon [icon]="faCheckDouble"/></span>
+      <span *ngSwitchCase="'deleted'"><fa-icon [icon]="faXmark"/></span>
     </div>
   </div>
 </span>

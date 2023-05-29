@@ -8,6 +8,7 @@ import { User } from '../user';
 })
 export class PfpComponent {
   @Input() user?: User
+  public showLetter = false
 
   pfpUrl() {
     const profilePicture = this.user!.profilePicture!

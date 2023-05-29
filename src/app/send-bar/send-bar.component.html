@@ -1,6 +1,6 @@
 <form (submit)="$event.preventDefault(); sendMessage(text.value); text.value = ''">
   <div>
     <input placeholder="your message goes here" #text>
-    <button type="submit">&gt;</button>
+    <button type="submit"><fa-icon [icon]="faPaperPlane"/></button>
   </div>
 </form>

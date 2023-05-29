@@ -5,19 +5,21 @@
   display: block;
 }
 
-button {
-  background-color: #363636;
-  border-radius: 10px;
-  padding: .5rem 1rem;
-  color: white;
-  border: none;
-  margin: .5rem auto;
-  display: block;
-
-  &#delete {
-    background-color: lightcoral;
-    &:hover {
-      background-color: coral;
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  button {
+    background-color: #363636;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    color: white;
+    border: none;
+    &#delete {
+      background-color: lightcoral;
+      &:hover {
+        background-color: coral;
+      }
     }
   }
 }

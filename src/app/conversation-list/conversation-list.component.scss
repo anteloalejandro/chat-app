@@ -49,4 +49,10 @@ ul {
     border: none;
     color: white
   }
+  .search-toggle {
+    &:hover {
+      background-color: #444;
+    }
+  }
+
 }

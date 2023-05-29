@@ -8,7 +8,7 @@
     <button *ngIf="mobileLayout" (click)="switchToConversations()" id="back-btn">&ltri;</button>
     <app-message-list [conversation]="conversation"/>
   </div>
-  <div *ngIf="pcLayout && getContact() as contact">
+  <div *ngIf="pcLayout && getContact() as contact" class="contact">
     <app-contact-data [user]="contact"/>
   </div>
 </div>
