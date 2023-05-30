@@ -51,6 +51,7 @@ export class AuthService {
 
   signOut() {
     this.token = ''
+    this.removeLocalStorageToken()
   }
 
   changePassword(newPassword: string): Observable<authResponse> {
@@ -63,6 +64,11 @@ export class AuthService {
 
   canActivate(): boolean {
     return this.token !== '' || this.checkLocalStorageToken()
+  }
+
+  removeLocalStorageToken() {
+    if (localStorage.getItem('token'))
+      localStorage.removeItem('token')
   }
 
   checkLocalStorageToken() {

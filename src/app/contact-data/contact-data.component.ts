@@ -98,7 +98,6 @@ export class ContactDataComponent {
 
   goBack() {
     this.location.back()
-    this.userService.contact = undefined
   }
 
   isOnStart() {

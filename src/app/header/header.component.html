@@ -13,7 +13,7 @@
       routerLink="/user-data">
       <fa-icon [icon]="faUser"/>
     </a>
-    <a routerLink="/sign-in">
+    <a (click)="close()" routerLink="/sign-in" >
       <fa-icon [icon]="faRightToBracket"/>
     </a>
   </div>

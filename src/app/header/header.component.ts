@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { ConversationService } from '../conversation.service';
 import { UserService } from '../user.service';
 import { faUser, faTrash, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ export class HeaderComponent {
     private userService: UserService,
     private conversationService: ConversationService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private authService: AuthService
   ) {}
 
   isOnStart() {
@@ -62,5 +64,9 @@ export class HeaderComponent {
         this.conversationService.conversation = undefined
         window.location.reload()
       })
+  }
+
+  close() {
+    this.authService.signOut()
   }
 }

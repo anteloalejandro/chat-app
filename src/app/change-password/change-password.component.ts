@@ -16,7 +16,7 @@ export class ChangePasswordComponent {
     private router: Router
   ) {}
 
-  submit(currentPasswd: string, newPasswd: string, newPasswdAgain: string) {
+  submit(newPasswd: string, newPasswdAgain: string) {
     if (newPasswd !== newPasswdAgain) {
       this.error = 'The passwords don\'t match'
       return
