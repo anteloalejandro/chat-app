@@ -9,6 +9,7 @@ import { ContactDataComponent } from './contact-data/contact-data.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
+// Determine if the user can access this route or not. If it doesn't, redirect them to sign-in
 const canActivateAuth: CanActivateFn = () => {
   if (inject(AuthService).canActivate())
     return true

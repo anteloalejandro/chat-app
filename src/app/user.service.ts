@@ -10,6 +10,8 @@ import { User } from './user';
 @Injectable({
   providedIn: 'root'
 })
+
+// Provides functions to handle users
 export class UserService {
   private userUrl = env.baseUrl+'/api/users'
   public user?: User
@@ -22,6 +24,7 @@ export class UserService {
       this.getUser().subscribe()
   }
 
+  // Makes a request to get a user
   getUser(id?: string): Observable<User> {
     let url = this.userUrl + '/'
     let params = 'token='+this.authService.token
@@ -43,6 +46,7 @@ export class UserService {
         catchError(this.handleError<User>()))
   }
 
+  // Makes a request to get a user by its email (perfect match)
   getByEmail(email: string): Observable<User> {
     const url = this.userUrl + '/byEmail/' + email
     const httpOptions = new HttpOptions()
@@ -50,6 +54,7 @@ export class UserService {
     return this.http.get<User>(url, httpOptions)
   }
 
+  // Makes a request to get a list of user by their email (partial match)
   search(email: string): Observable<User[]> {
     const url = this.userUrl + '/search'
     const httpOptions = new HttpOptions('email='+email)
@@ -57,18 +62,21 @@ export class UserService {
     return this.http.get<User[]>(url, httpOptions)
   }
 
+  // Makes a request to get a list of users the current one has conversations with
   getContacts(): Observable<User[]> {
     const url = this.userUrl + '/contacts'
     const httpOptions = new HttpOptions('token='+this.authService.token)
     return this.http.get<User[]>(url, httpOptions)
   }
 
+  // Makes a request to delete a user
   deleteUser(): Observable<User> {
     const url = this.userUrl
     const httpOptions = new HttpOptions('token='+this.authService.token)
     return this.http.delete<User>(url, httpOptions)
   }
 
+  // Makes a request to update a user
   updateUser(user: User): Observable<User> {
     const url = this.userUrl
     const httpOptions = new HttpOptions('token='+this.authService.token)
@@ -77,12 +85,14 @@ export class UserService {
       .pipe(tap(_ => this.user = _))
   }
 
+  // Between to users, who is the current user?
   whoAmI(user1: string, user2: string): string {
     const me = this.user
     const alsoMe = me?._id == user1 ? user1 : user2
     return alsoMe
   }
 
+  // Between to users, who is NOT the current user?
   notMe(user1: string, user2: string): string {
     const me = this.user
     const notMe = me?._id != user1 ? user1 : user2

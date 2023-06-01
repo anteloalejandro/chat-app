@@ -9,6 +9,8 @@ import { HttpOptions } from './http-options';
 @Injectable({
   providedIn: 'root'
 })
+
+// Provides functions related to user authentication
 export class AuthService {
   private authUrl = env.baseUrl+'/auth'
   private httpOptions = new HttpOptions()
@@ -17,6 +19,7 @@ export class AuthService {
   public token: string = ''
   constructor(private http: HttpClient) { }
 
+  // Requests and stores a token to the public API
   signIn(email: string, password: string): Observable<AuthToken> {
     const url = this.authUrl+'/sign-in'
     return this.http.post<AuthToken>(url, {
@@ -40,6 +43,7 @@ export class AuthService {
       )
   }
 
+  // Makes a request to create a new user
   signUp(username: string, email: string, password: string): Observable<authResponse> {
     const url = this.authUrl + '/sign-up'
     return this.http.post<authResponse>(url, {
@@ -49,11 +53,13 @@ export class AuthService {
     }, this.httpOptions)
   }
 
+  // Remove token
   signOut() {
     this.token = ''
     this.removeLocalStorageToken()
   }
 
+  // Makes a request to change the current user's password
   changePassword(newPassword: string): Observable<authResponse> {
     const url = this.authUrl + '/change-password'
     const httpOptions = new HttpOptions('token='+this.token)
@@ -62,15 +68,18 @@ export class AuthService {
     }, httpOptions)
   }
 
+  // Function to check if the user can access a given route
   canActivate(): boolean {
     return this.token !== '' || this.checkLocalStorageToken()
   }
 
+  // Removes the token from localStorage
   removeLocalStorageToken() {
     if (localStorage.getItem('token'))
       localStorage.removeItem('token')
   }
 
+  // Check and retrieve the token from localStorage
   checkLocalStorageToken() {
     const tokenStr = localStorage.getItem('token')
     if (!tokenStr)
@@ -107,5 +116,6 @@ export class AuthService {
   }
 }
 
+// Types for responses and tokens
 type authResponse = {id: string, msg: string, error?: string}
 type localStorageToken = {token: string, expirationDate: Date}

@@ -62,6 +62,7 @@ export class ConversationListComponent {
       })
   }
 
+  // Update the map of users and conversations
   updateMap(contacts: User[]) {
     for (const conv of this.conversations) {
       for (const contact of contacts) {

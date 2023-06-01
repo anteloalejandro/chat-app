@@ -16,6 +16,7 @@ export class ChangePasswordComponent {
     private router: Router
   ) {}
 
+  // Changes the password and removes the current token
   submit(newPasswd: string, newPasswdAgain: string) {
     if (newPasswd !== newPasswdAgain) {
       this.error = 'The passwords don\'t match'
@@ -28,7 +29,7 @@ export class ChangePasswordComponent {
 
         if (!this.error) {
           this.authService.signOut()
-          this.router.navigate([''])
+          this.router.navigate(['/'])
         }
       })
   }

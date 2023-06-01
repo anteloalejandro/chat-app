@@ -9,6 +9,8 @@ import { Message } from './message';
 @Injectable({
   providedIn: 'root'
 })
+
+// Provides functions to handle messages
 export class MessageService {
   private messsageUrl = env.baseUrl+'/api/messages'
 
@@ -17,6 +19,7 @@ export class MessageService {
     private authService: AuthService
   ) { }
 
+  // Makes a request to obtain a single message
   getMessage(id: string): Observable<Message> {
     const url = this.messsageUrl + '/' + id
     const httpOptions = new HttpOptions('token='+this.authService.token)
@@ -24,6 +27,7 @@ export class MessageService {
     return this.http.get<Message>(url, httpOptions)
   }
 
+  // Makes a request to get all the messages pertaining to a conversation
   getMessagesFromConversation(id: string): Observable<Message[]> {
     const url = this.messsageUrl+'/conversation/'+id
     const httpOptions = new HttpOptions('token='+this.authService.token)
@@ -31,7 +35,7 @@ export class MessageService {
     return this.http.get<Message[]>(url, httpOptions)
   }
 
-
+  // Makes a request to store a message
   save(message: messagePost): Observable<Message> {
     const url = this.messsageUrl
     const httpOptions = new HttpOptions('token='+this.authService.token)
@@ -39,6 +43,7 @@ export class MessageService {
     return this.http.post<Message>(url, message, httpOptions)
   }
 
+  // Makes a request to delete a message
   delete(id: string): Observable<Message> {
     const url = this.messsageUrl + '/' + id
     const httpOptions = new HttpOptions('token='+this.authService.token)
