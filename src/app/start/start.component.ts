@@ -62,7 +62,6 @@ export class StartComponent {
 
   ngOnDestroy() {
     this.conversationService.conversation = this.conversation
-    this.socketService.leaveRoom('a')
   }
 
   setConversation(id: string) {
