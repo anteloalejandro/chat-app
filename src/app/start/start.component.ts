@@ -5,6 +5,7 @@ import { SocketIoService } from '../socket-io.service';
 import { AuthService } from '../auth.service';
 import { ConversationService } from '../conversation.service';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -26,7 +27,8 @@ export class StartComponent {
     private userService: UserService,
     private socketService: SocketIoService,
     private authService: AuthService,
-    private conversationService: ConversationService
+    private conversationService: ConversationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -104,7 +106,13 @@ export class StartComponent {
       this.socketService.join()
     } else if (this.authService.checkLocalStorageToken()) {
       this.userService.getUser()
-        .subscribe(() => {
+        .subscribe(user => {
+          console.log(user)
+          if (user.error) {
+            this.authService.signOut()
+            this.userService.user = undefined
+            this.router.navigate(['/'])
+          }
           this.socketService.join()
         })
     }

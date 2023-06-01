@@ -6,6 +6,7 @@ import { catchError, map, tap, flatMap, mergeMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { HttpOptions } from './http-options';
 import { User } from './user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,18 @@ export class UserService {
   public contact?: User
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     if (this.authService.token)
-      this.getUser().subscribe()
+      this.getUser().subscribe(user => {
+        console.log(user)
+        if (user.error) {
+          this.authService.signOut()
+          this.user = undefined
+          this.router.navigate(['/'])
+        }
+      })
   }
 
   // Makes a request to get a user
@@ -42,8 +51,8 @@ export class UserService {
           if (!store)
             return
           this.user = _
-        }),
-        catchError(this.handleError<User>()))
+        })
+      )
   }
 
   // Makes a request to get a user by its email (perfect match)
@@ -97,13 +106,5 @@ export class UserService {
     const me = this.user
     const notMe = me?._id != user1 ? user1 : user2
     return notMe
-  }
-
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-
-      return of(result as T);
-    }
   }
 }
