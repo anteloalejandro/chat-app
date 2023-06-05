@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ConversationService } from '../conversation.service';
 import { SocketIoService } from '../socket-io.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -16,6 +17,7 @@ export class SignUpComponent {
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private conversationService: ConversationService,
     private socketService: SocketIoService,
     private router: Router
   ) {}
@@ -33,6 +35,8 @@ export class SignUpComponent {
 
         this.authService.signIn(email, password)
           .subscribe(() => {
+            this.userService.contact = undefined
+            this.conversationService.conversation = undefined
             this.userService.getUser()
               .subscribe(user => {
                 this.socketService.join()

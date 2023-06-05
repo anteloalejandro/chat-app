@@ -5,6 +5,13 @@
   display: block;
 }
 
+@media (max-width: 600px) {
+  h1, h2 {
+    max-width: 300px;
+    overflow-x: auto;
+  }
+}
+
 .btn-group {
   display: flex;
   justify-content: center;
