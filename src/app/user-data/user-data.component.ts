@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { ConversationService } from '../conversation.service';
 
 @Component({
   selector: 'app-user-data',
@@ -17,6 +18,7 @@ export class UserDataComponent {
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private conversationService: ConversationService,
     private router: Router,
     private location: Location,
   ) { }
@@ -38,7 +40,9 @@ export class UserDataComponent {
       this.userService.deleteUser()
       .subscribe( () => {
         this.authService.signOut()
+        this.conversationService.conversation = undefined
         this.userService.user = undefined
+        this.userService.contact = undefined
         this.router.navigate(['/'])
       })
   }
